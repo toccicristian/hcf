@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!--
+    <link href="https://fonts.googleapis.com/css2?family=Amarante&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+    -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+
+
+    <title>HALT AND CATCH FIRE</title>
+</head>
+<body>
+    <header>
+        <button onclick="topFunction()" id="botonVolverArriba" title="Ir Arriba!"><img src="images/to-top-b.png" alt="volver arriba"></button>    
+        <nav id="menu_bar" class="">
+            <ul>
+                <li class="dropdown">
+                    <a class="dropbtn selected-entry" href="index.html">
+                    Inicio
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="./elenco.html">Elenco</a>
+                        <a href="./ost.html">Ost</a>
+                    </div>
+                </li>
+                <li><a href="personajes.html">Personajes</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="resenas.html">Reseñas</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="top" name="top"></div>
+
+    <section>
+        <article class="principal" id="principal">
+            <div>
+                <video class="logoPrincipal" src="./video/hcf/logo.mp4" alt="logo de la serie">
+            </div>
+        </article>
+    </section>
+
+    <footer>
+        <div class="redes">
+            <a class="redesHome" href="https://www.facebook.com/HaltAndCatchFireAMC" target="_blank"><img src="./images/redes/facebook-f-b.png" alt="link al Facebook de la serie"></a>
+            <a class="redesHome" href="https://www.youtube.com/watch?v=DDiA0mFCRvg"><img src="./images/redes/youtube-b.png" alt="link al trailer en Youtube"></a>
+            <a class="redesHome" href="https://www.instagram.com/haltandcatchfireofficial//"><img src="./images/redes/instagram-b.png" alt="link al Instagram de la serie"></a>
+            <a class="redesHome" href="https://www.primevideo.com/-/es/detail/0KTARLEYQXFNPID6E348CMKPVW" target="_blank"><img src="./images/redes/amazon.png" alt="link a la serie en Prime Video"></a>
+        </div>
+        <div class="copyright">
+            <p> © Realizado por Tocci, Cristian</p>
+        </div>
+    </footer>
+    <script src="js/volverArriba.js"></script>
+    <script type="text/javascript">
+        function myFunction() {
+          var x = document.getElementById("menu_bar");
+          if (x.className === "") {
+            x.className += " responsive";
+          } else {
+            x.className = "";
+          }   
+        }
+
+    </script>
+
+
+</body>
+</html>
