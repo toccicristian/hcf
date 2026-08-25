@@ -1,7 +1,5 @@
 :root{
 
-    /* COLOR TEXTOS */
-
     /* TEMA VERDE */
     /* --color-oscuro:#021413;     */
     /* --color-fondo:#01362f; */
@@ -144,6 +142,8 @@ section article div{
     padding: 0;
 }
 
+
+
 .principal{
     width: 100%;
     height: 50vw;
@@ -207,19 +207,7 @@ section article div{
     to   { opacity: 1; }
 }
 
-footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 250px;
-    width:100%;
-}
-footer img{
-    max-width: 2.5rem;
-    width: 100%;
-    height: auto;
-    margin-right: 3.5%;
-}
+
 
 button{
     padding:8px 12px;
@@ -231,6 +219,41 @@ button{
     cursor:pointer;
     transition:all .3s;
 }
+
+
+footer{
+    height: 14rem;
+    width:100%;
+}
+
+
+.redes{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 9rem;    
+}
+
+.redes a img{
+    max-width: 2.5rem;
+    width: 100%;
+    margin: 0 0.4rem;
+    height: auto;
+    margin:1rem 1rem;
+    transition: transform 0.2s ease-in-out;
+
+}
+
+.redes a img:hover{
+    transform:scale(2,2);
+}
+
+.copyright{
+    width:100%;
+    text-align: center;
+}
+
 
 button:hover{
     background:var(--color-fondo);
