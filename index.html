@@ -41,14 +41,33 @@
     </header>
     <div id="top" name="top"></div>
 
+
     <section>
         <article class="principal" id="principal">
-            <video autoplay loop muted playsinline width="800">
+            <video
+                id="hcfVideo"
+                class="logoPrincipal"
+                autoplay
+                muted
+                loop
+                playsinline
+                width="800"
+                preload="auto"
+            >
                 <source src="./video/hcf-logo.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
             </video>
         </article>
     </section>
 
+<script>
+    const video = document.getElementById("hcfVideo");
+
+    video.muted = true;
+    video.play().catch(error => {
+        console.log("Autoplay was blocked:", error);
+    });
+</script>
 
 
 
