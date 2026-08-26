@@ -24,12 +24,23 @@ html{
     box-sizing: border-box;
 }
 body{
-    background-image: linear-gradient(var(--color-oscuro) 30%, var(--color-fondo) 95%);
+    /* background-image: linear-gradient(var(--color-oscuro) 30%, var(--color-fondo) 95%); */
+    background-image:url("../images/hcf-main-poster-1366-72.jpg");
+
+  color: var(--color-texto);
+  background-size:cover;
+  background-color: #000000;
+  background-attachment: fixed;
+  /* text-align: center; */
+  background-repeat:no-repeat;
+
     font-family: 'VT323', monospace;
     font-weight: 400;
     font-style: normal;
     font-size:xx-large;
 }
+
+
 
 #top{
     position:absolute;
@@ -40,10 +51,29 @@ header{
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-around;
+    flex-wrap:wrap;
 }
 
 .logo{
     height:70px;
+}
+
+
+article.sinopsis{
+    /* max-width:35rem; */
+    margin: 4rem auto 15rem auto;
+    width:100%;
+    
+}
+
+article.sinopsis aside{
+    float:left;
+    width:50%;
+}
+
+article.sinopsis aside p{
+    max-width:35rem;
+    margin-left:15rem;
 }
 
 section h1{
@@ -145,7 +175,7 @@ section article div{
 
 .principal{
     /* width: 100%; */
-    height: 9vw;
+    height: 6vw;
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center;;
@@ -221,6 +251,7 @@ button{
 
 
 footer{
+    bottom:15rem;
     height: 14rem;
     width:100%;
 }
