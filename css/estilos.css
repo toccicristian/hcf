@@ -21,6 +21,7 @@
     --color-frente:#00bb4e;
     --color-texto:#52ff9a; */
 
+    --color-terminal:#52ff9a;
     }
 
 html{
@@ -37,17 +38,25 @@ body{
     /* background-image: linear-gradient(var(--color-oscuro) 30%, var(--color-fondo) 95%); */
     background-image:url("../images/hcf-main-poster-1366-72.jpg");
 
-  color: var(--color-texto);
-  background-size:cover;
-  background-color: #000000;
-  background-attachment: fixed;
-  /* text-align: center; */
-  background-repeat:no-repeat;
+    color: var(--color-texto);
+    background-size:cover;
+    background-color: #000000;
+    background-attachment: fixed;
+    /* text-align: center; */
+    background-repeat:no-repeat;
 
     font-family: 'VT323', monospace;
     font-weight: 400;
     font-style: normal;
     font-size:xx-large;
+}
+
+h1{
+    color:var(--color-terminal);
+}
+
+p{
+    color:var(--color-terminal);
 }
 
 #top{
@@ -58,7 +67,7 @@ body{
 header{
     padding: 1rem 2rem;
     display: flex;
-    justify-content: space-around;
+    justify-content:space-between;
     flex-wrap:wrap;
 }
 
@@ -88,7 +97,7 @@ section h1{
 }
 
 #menu_bar{
-    margin: 2rem auto auto 2rem;
+    margin: 2rem 0 0 2rem;
 }
 
 nav ul li{
