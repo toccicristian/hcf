@@ -1,4 +1,5 @@
 let botonVolverArriba = document.getElementById("botonVolverArriba");
+botonVolverArriba.style.display = "none";
 
 window.onscroll = function() {scrollFunction()};
 
@@ -14,5 +15,4 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
 } 
-
 
