@@ -8,42 +8,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/estilos.css">
-    
+    <link rel="stylesheet" href="css/efectos.css">
+
 
     <title>HALT AND CATCH FIRE</title>
 </head>
 <body>    
-    <header>     
-        <div class="no-movil">
-
-        <!-- Botón del menú hamburguesa -->
-        <button 
-            id="menu-toggle"
-            class="menu-toggle"
-            aria-label="Abrir menú"
-            aria-expanded="false"
-            aria-controls="menu_bar"
-        >
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
+    <header>
+         <a href="index.html">
+            <div class="typewriter">
+                <h1>HALT AND CATCH FIRE</h1>
+            </div>
+         </a>
         <nav id="menu_bar" class="fade-in-5">
             <ul class="glitch">
                 <li class="dropdown">
-                    <button 
-                        type="button"
-                        class="dropbtn selected-entry"
-                        aria-expanded="false"
-                    >
-                        Inicio
-                    </button>
-
+                    <a class="dropbtn selected-entry" href="index.html">
+                    Inicio
+                    </a>
                     <div class="dropdown-content">
                         <a href="./elenco.html">Elenco</a>
                         <a href="./ost.html">Ost</a>
@@ -55,13 +43,6 @@
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
         </nav>
-            <a href="index.html">
-                <div class="typewriter">
-                    <h1>HALT AND CATCH FIRE</h1>
-                </div>
-            </a>
-        </div>
-
     </header>
     <div id="top" name="top"></div>
 
@@ -75,6 +56,9 @@
 
         </article>
     </section>
+
+
+
     
     <footer>
         <button onclick="topFunction()" id="botonVolverArriba" title="Ir Arriba!"><img src="images/to-top-b.png" alt="volver arriba"></button>    
@@ -89,8 +73,19 @@
             <p> © Realizado por Tocci, Cristian</p>
         </div>
     </footer>
-
     <script src="js/volverArriba.js"></script>
-    <script src="js/menu.js"></script>
+    <script type="text/javascript">
+        function myFunction() {
+          var x = document.getElementById("menu_bar");
+          if (x.className === "") {
+            x.className += " responsive";
+          } else {
+            x.className = "";
+          }   
+        }
+
+    </script>
+
+
 </body>
 </html>
