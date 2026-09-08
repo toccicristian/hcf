@@ -189,7 +189,43 @@ section {
     line-height: 1.05;
     letter-spacing: 2px;
     text-shadow: 0 0 8px var(--color-verde-terminal);
+
+    animation: crt-flicker 4s infinite,
+            crt-drift 6s ease-in-out infinite;
 }
+
+@keyframes crt-flicker {
+    0%,
+    18%,
+    22%,
+    63%,
+    66%,
+    100% {
+        opacity: 1;
+    }
+
+    19%,
+    21%,
+    64% {
+        opacity: 0.82;
+    }
+
+    65% {
+        opacity: 0.55;
+    }
+}
+
+@keyframes crt-drift {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(1px);
+    }
+}
+
 
 .asm-command {
     color: var(--color-magenta);
@@ -513,7 +549,11 @@ footer {
 
 
 
-
+@media (prefers-reduced-motion: reduce) {
+    .assembler {
+        animation: none;
+    }
+}
 
 
 
