@@ -18,14 +18,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Abrir y cerrar el submenú de Inicio
-    dropButton.addEventListener("click", () => {
-            const dropdownAbierto = dropdown.classList.toggle("open");
 
-            dropButton.setAttribute(
-                "aria-expanded",
-                dropdownAbierto
-            );
+    dropButton.addEventListener("click", (evento) => {
+    if (window.innerWidth <= 768) {
+        evento.preventDefault();
+
+        const dropdownAbierto = dropdown.classList.toggle("open");
+
+        dropButton.setAttribute(
+            "aria-expanded",
+            dropdownAbierto
+        );
+    }
     });
+
 
     // Cerrar el menú al pulsar Elenco, Ost o cualquier otro enlace
     const enlaces = menu.querySelectorAll(".dropdown-content a, ul > li:not(.dropdown) a");
