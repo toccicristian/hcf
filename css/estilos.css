@@ -189,9 +189,11 @@ section {
     line-height: 1.05;
     letter-spacing: 2px;
     text-shadow: 0 0 8px var(--color-verde-terminal);
+}
 
+.hero-status, .assembler {
     animation: crt-flicker 4s infinite,
-            crt-drift 6s ease-in-out infinite;
+        crt-drift 6s ease-in-out infinite;
 }
 
 @keyframes crt-flicker {
@@ -627,11 +629,50 @@ footer {
 
     .hero {
         min-height: 600px;
-        align-items: flex-end;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
-        padding: 40px 20px 70px;
+        gap: 35px;
+
+        padding: 50px 20px 70px;
 
         background-position: 62% center;
+    }
+
+    .hero-info {
+        width: 100%;
+        max-width: 430px;
+        margin: 0 auto;
+
+        text-align: left;
+    }
+
+    .assembler {
+        width: max-content;
+        max-width: 100%;
+        margin: 5px auto 10px;
+
+        color: var(--color-verde-terminal);
+        font-family: "VT323", monospace;
+        font-size: clamp(1.8rem, 8vw, 3.5rem);
+        line-height: 1.05;
+        letter-spacing: 2px;
+        text-align: left;
+
+        text-shadow:
+            0 0 5px var(--color-verde-terminal),
+            0 0 15px var(--color-verde-terminal);
+    }
+
+    .hero-line {
+        width: 180px;
+        margin: 20px auto;
+    }
+
+    .hero-status {
+        text-align: center;
     }
 
     .hero-text {
@@ -640,47 +681,11 @@ footer {
         padding: 20px;
 
         font-size: 1.35rem;
-        text-align: center;
+        text-align: left;
+
         border-top: 2px solid var(--color-cian);
         border-left: none;
     }
-
-    .hero {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 35px;
-        padding: 50px 20px 70px;
-        text-align: center;
-    }
-
-    .hero-info,
-    .hero-text {
-        width: 100%;
-        max-width: 430px;
-        margin: 0;
-    }
-
-    .hero-line {
-        margin: 20px auto;
-    }
-
-
-    .assembler {
-        margin: 5px 0 10px;
-        color: var(--color-verde-terminal);
-        font-family: "VT323", monospace;
-        font-size: clamp(1.8rem, 3.5vw, 3.5rem);
-        line-height: 1.05;
-        letter-spacing: 2px;
-        /*white-space: pre-wrap;*/
-
-        text-shadow:
-            0 0 5px var(--color-verde-terminal),
-            0 0 15px var(--color-verde-terminal);
-    }
-
-
 
     .redes {
         gap: 12px;
