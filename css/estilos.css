@@ -73,6 +73,139 @@ section {
     flex: 1;
 }
 
+.hero {
+    position: relative;
+    min-height: 600px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    padding: 80px 8%;
+
+    background-image:
+        linear-gradient(
+            to right,
+            var(--color-fondo) 0%,
+            rgba(5, 10, 15, 0.75) 22%,
+            rgba(5, 10, 15, 0.15) 58%,
+            rgba(5, 10, 15, 0.55) 100%
+        ),
+        linear-gradient(
+            to bottom,
+            var(--color-fondo) 0%,
+            transparent 18%,
+            transparent 72%,
+            var(--color-fondo) 100%
+        ),
+       /* url("../images/hcf-main-poster-1366-72.jpg");*/
+       url("../images/hcf-main-poster-1366-72.jpg");
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 1;
+
+    width: min(420px, 40%);
+    padding: 25px;
+
+    color: var(--color-texto);
+    background-color: rgba(5, 10, 15, 0.45);
+    border-left: 2px solid var(--color-cian);
+    box-shadow: 0 0 18px rgba(0, 245, 255, 0.2);
+
+    font-size: 1.6rem;
+    line-height: 1.2;
+    text-shadow: 0 0 6px rgba(216, 243, 220, 0.6);
+}
+
+.hero-text p {
+    margin: 0;
+}
+
+
+
+
+.hero-info {
+    position: relative;
+    z-index: 1;
+
+    width: min(420px, 42%);
+    margin-right: auto;
+
+    color: var(--color-cian);
+    text-shadow: 0 0 8px var(--color-cian);
+}
+
+.hero-info h2 {
+    margin: 18px 0 10px;
+
+    color: var(--color-verde-terminal);
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: 0.95;
+    letter-spacing: 4px;
+    text-shadow:
+        0 0 5px var(--color-verde-terminal),
+        0 0 15px var(--color-verde-terminal);
+}
+
+.hero-kicker {
+    color: var(--color-ambar);
+    font-size: 1rem;
+    letter-spacing: 2px;
+}
+
+.hero-line {
+    width: 180px;
+    height: 2px;
+    margin: 20px 0;
+
+    background-color: var(--color-magenta);
+    box-shadow: 0 0 8px var(--color-magenta);
+}
+
+.hero-status {
+    margin: 0;
+    color: var(--color-texto-secundario);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+.hero-status span {
+    color: var(--color-verde-terminal);
+}
+
+.assembler {
+    margin: 20px 0 10px;
+
+    color: var(--color-verde-terminal);
+    font-size: clamp(1.8rem, 3.5vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px var(--color-verde-terminal);
+}
+
+.asm-command {
+    color: var(--color-magenta);
+    text-shadow: 0 0 8px var(--color-magenta);
+}
+
+.asm-argument {
+    color: var(--color-verde-terminal);
+}
+
+
+
+
+
+
+
 /* Menú de escritorio */
 
 .no-movil {
@@ -380,9 +513,71 @@ footer {
 
 
 
+
+
+
+
+
 /* Diseño para móviles */
 
 @media (max-width: 768px) {
+
+    .hero {
+        min-height: 600px;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 40px 20px 70px;
+
+        background-position: 62% center;
+    }
+
+    .hero-text {
+        width: 100%;
+        max-width: 430px;
+        padding: 20px;
+
+        font-size: 1.35rem;
+        text-align: center;
+        border-top: 2px solid var(--color-cian);
+        border-left: none;
+    }
+
+    .hero {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 35px;
+        padding: 50px 20px 70px;
+        text-align: center;
+    }
+
+    .hero-info,
+    .hero-text {
+        width: 100%;
+        max-width: 430px;
+        margin: 0;
+    }
+
+    .hero-line {
+        margin: 20px auto;
+    }
+
+
+    .assembler {
+        margin: 5px 0 10px;
+        color: var(--color-verde-terminal);
+        font-family: "VT323", monospace;
+        font-size: clamp(1.8rem, 3.5vw, 3.5rem);
+        line-height: 1.05;
+        letter-spacing: 2px;
+        /*white-space: pre-wrap;*/
+
+        text-shadow:
+            0 0 5px var(--color-verde-terminal),
+            0 0 15px var(--color-verde-terminal);
+    }
+
+
 
     .redes {
         gap: 12px;
