@@ -78,8 +78,10 @@ section {
     min-height: 600px;
 
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-end;
+    gap:5rem;
 
     padding: 80px 8%;
 
@@ -112,7 +114,7 @@ section {
     position: relative;
     z-index: 1;
 
-    width: min(420px, 40%);
+    width: min(700px, 40%);
     padding: 25px;
 
     color: var(--color-texto);
@@ -120,9 +122,10 @@ section {
     border-left: 2px solid var(--color-cian);
     box-shadow: 0 0 18px rgba(0, 245, 255, 0.2);
 
-    font-size: 1.6rem;
+    font-size: 2.5rem;
     line-height: 1.2;
     text-shadow: 0 0 6px rgba(216, 243, 220, 0.6);
+    margin: 0 0 10rem 10rem;
 }
 
 .hero-text p {
@@ -137,7 +140,7 @@ section {
     z-index: 1;
 
     width: min(420px, 42%);
-    margin-right: auto;
+    /* margin-right: auto; */
 
     color: var(--color-cian);
     text-shadow: 0 0 8px var(--color-cian);
@@ -157,7 +160,7 @@ section {
 
 .hero-kicker {
     color: var(--color-ambar);
-    font-size: 1rem;
+    font-size: 2rem;
     letter-spacing: 2px;
 }
 
@@ -173,7 +176,7 @@ section {
 .hero-status {
     margin: 0;
     color: var(--color-texto-secundario);
-    font-size: 1.1rem;
+    font-size: 2.5rem;
     letter-spacing: 2px;
 }
 
@@ -185,10 +188,11 @@ section {
     margin: 20px 0 10px;
 
     color: var(--color-verde-terminal);
-    font-size: clamp(1.8rem, 3.5vw, 3.5rem);
+	font-size: clamp(4rem, 3.5vw, 3.5rem);
     line-height: 1.05;
     letter-spacing: 2px;
     text-shadow: 0 0 8px var(--color-verde-terminal);
+
 }
 
 .hero-status, .assembler {
@@ -249,7 +253,7 @@ section {
 .no-movil {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
     padding: 0 30px;
 }
@@ -265,6 +269,7 @@ section {
 #menu_bar {
     display: block;
     order: 2;
+    font-size:2.5rem;
 }
 
 #menu_bar ul {
@@ -430,7 +435,7 @@ section {
 .typewriter h1 {
     margin: 0;
     color: var(--color-verde-terminal);
-    font-size: 2rem;
+    font-size:3.5rem;
     letter-spacing: 3px;    
 }
 
@@ -512,8 +517,8 @@ footer {
     justify-content: center;
     align-items: center;
 
-    width: 42px;
-    height: 42px;
+    width: 72px;
+    height: 64px;
 
     border: 1px solid var(--color-cian);
     background-color: var(--color-superficie);
@@ -528,8 +533,8 @@ footer {
 .redesHome img {
     display: block;
 
-    width: 24px;
-    height: 24px;
+    width: 48px;
+    height: 48px;
     object-fit: contain;
 }
 
@@ -537,10 +542,41 @@ footer {
     background-color: var(--color-superficie-hover);
     box-shadow: 0 0 14px var(--color-cian);
     transform: translateY(-4px);
+
+
+    /* opacity: 1;
+    visibility: visible;
+
+    color: var(--color-verde-terminal);
+    background-color: var(--color-superficie-hover);
+    text-shadow: 0 0 8px var(--color-verde-terminal);
+
+    color: #00ffcc;
+    background-color: #222;
+    text-shadow: 0 0 8px #00ffcc; */
+
+
+
 }
 
 .redesHome:hover img {
-    filter: drop-shadow(0 0 5px var(--color-verde-terminal));
+    /* filter: drop-shadow(0 0 5px var(--color-verde-terminal)); */
+    filter: drop-shadow(0 0 5px #00ffcc);
+/* 
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); */
+
+    /* 
+    color: var(--color-verde-terminal);
+    background-color: var(--color-superficie-hover);
+    text-shadow: 0 0 8px var(--color-verde-terminal); */
+/* 
+    color: #00ffcc;
+    background-color: #222;
+    text-shadow: 0 0 8px #00ffcc; */
+
+
 }
 
 .copyright {
@@ -710,6 +746,7 @@ footer {
         flex-direction: column;
         align-items: stretch;
         padding: 0 15px;
+        justify-content:space-around;
     }
 
     .menu-toggle {
