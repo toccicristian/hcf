@@ -2,65 +2,90 @@
   const $ = (s, root = document) => root.querySelector(s);
   const $$ = (s, root = document) => [...root.querySelectorAll(s)];
 
-
-  // Global CRT phosphor selector. The selected monitor profile persists across pages.
+  // Global CRT phosphor selector. The HTML/CSS own its structure and layout;
+  // JavaScript only manages state, persistence and navigation propagation.
   const phosphorProfiles = {
     green: 'VERDE',
     amber: 'ÁMBAR',
     blue: 'AZUL',
-    white: 'BLANCO'
+    white: 'BLANCO',
   };
-  const savedPhosphor = (() => {
-    try {
-      const tabValue = (window.name.match(/^hcf-phosphor:(green|amber|blue|white)$/) || [])[1];
-      const value = localStorage.getItem('hcf-phosphor') || tabValue || 'green';
-      return phosphorProfiles[value] ? value : 'green';
-    } catch (e) {
-      const tabValue = (window.name.match(/^hcf-phosphor:(green|amber|blue|white)$/) || [])[1];
-      return phosphorProfiles[tabValue] ? tabValue : 'green';
-    }
-  })();
-  document.documentElement.dataset.phosphor = savedPhosphor;
-  window.name = `hcf-phosphor:${savedPhosphor}`;
+  const validPhosphor = value =>
+    Object.prototype.hasOwnProperty.call(phosphorProfiles, value);
+  let activePhosphor = validPhosphor(window.__hcfPhosphor) ? window.__hcfPhosphor : 'green';
 
-  const phosphorPicker = document.createElement('div');
-  phosphorPicker.className = 'phosphor-picker';
-  phosphorPicker.setAttribute('aria-label', 'Selector de fósforo CRT');
-  phosphorPicker.innerHTML = `
-    <button class="phosphor-toggle" type="button" aria-expanded="false">PHOSPHOR: <strong>${phosphorProfiles[savedPhosphor]}</strong> ▾</button>
-    <div class="phosphor-menu" role="menu" aria-label="Tipo de fósforo">
-      ${Object.entries(phosphorProfiles).map(([key,label]) => `<button class="phosphor-option${key === savedPhosphor ? ' active' : ''}" type="button" role="menuitemradio" aria-checked="${key === savedPhosphor}" data-phosphor-value="${key}"><span class="phosphor-swatch"></span>${label}</button>`).join('')}
-      <span class="phosphor-picker-note">MEMORY: LOCAL STORAGE</span>
-    </div>`;
-  document.body.appendChild(phosphorPicker);
+  const carryPhosphorToLinks = value => {
+    $$('a[href]').forEach(link => {
+      const raw = link.getAttribute('href');
+      const isSkippedLink =
+        !raw ||
+        raw.startsWith('#') ||
+        raw.startsWith('mailto:') ||
+        raw.startsWith('tel:') ||
+        raw.startsWith('javascript:');
 
-  const phosphorToggle = $('.phosphor-toggle', phosphorPicker);
+      if (isSkippedLink) return;
+      try {
+        const url = new URL(raw, location.href);
+        if (url.protocol !== 'file:' && url.origin !== location.origin) return;
+        if (!/\.html$/i.test(url.pathname)) return;
+        url.searchParams.set('phosphor', value);
+        link.href = url.href;
+      } catch (e) {}
+    });
+  };
+
+  const phosphorPicker = $('.phosphor-picker');
+  const phosphorToggle = $('.phosphor-toggle', phosphorPicker || document);
+  const phosphorCurrent = $('.phosphor-current', phosphorPicker || document);
+  const syncPhosphorControl = value => {
+    if (phosphorCurrent) phosphorCurrent.textContent = phosphorProfiles[value];
+    if (!phosphorPicker) return;
+    $$('.phosphor-option', phosphorPicker).forEach(btn => {
+      const active = btn.dataset.phosphorValue === value;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-checked', String(active));
+    });
+  };
   const closePhosphorMenu = () => {
-    phosphorPicker.classList.remove('open');
+    phosphorPicker?.classList.remove('open');
     phosphorToggle?.setAttribute('aria-expanded', 'false');
   };
+  const applyPhosphor = value => {
+    if (!validPhosphor(value)) return;
+    activePhosphor = value;
+    document.documentElement.dataset.phosphor = value;
+    window.__hcfPhosphor = value;
+    window.name = `hcf-phosphor:${value}`;
+    try { localStorage.setItem('hcf-phosphor', value); } catch (e) {}
+    try {
+      const current = new URL(location.href);
+      current.searchParams.set('phosphor', value);
+      history.replaceState(null, '', current.href);
+    } catch (e) {}
+    carryPhosphorToLinks(value);
+    syncPhosphorControl(value);
+  };
+
+  carryPhosphorToLinks(activePhosphor);
+  syncPhosphorControl(activePhosphor);
   phosphorToggle?.addEventListener('click', e => {
     e.stopPropagation();
     const open = phosphorPicker.classList.toggle('open');
     phosphorToggle.setAttribute('aria-expanded', String(open));
   });
-  $$('.phosphor-option', phosphorPicker).forEach(option => option.addEventListener('click', () => {
-    const value = option.dataset.phosphorValue;
-    if (!phosphorProfiles[value]) return;
-    document.documentElement.dataset.phosphor = value;
-    try { localStorage.setItem('hcf-phosphor', value); } catch (e) {}
-    window.name = `hcf-phosphor:${value}`;
-    $$('.phosphor-option', phosphorPicker).forEach(btn => {
-      const active = btn === option;
-      btn.classList.toggle('active', active);
-      btn.setAttribute('aria-checked', String(active));
+  $$('.phosphor-option', phosphorPicker || document).forEach(option => {
+    option.addEventListener('click', () => {
+      applyPhosphor(option.dataset.phosphorValue);
+      closePhosphorMenu();
     });
-    phosphorToggle.innerHTML = `PHOSPHOR: <strong>${phosphorProfiles[value]}</strong> ▾`;
-    closePhosphorMenu();
-  }));
-  document.addEventListener('click', e => {
-    if (!phosphorPicker.contains(e.target)) closePhosphorMenu();
   });
+
+  document.addEventListener('click', e => {
+    const link = e.target.closest?.('a[href]');
+    if (link) carryPhosphorToLinks(activePhosphor);
+    if (phosphorPicker && !phosphorPicker.contains(e.target)) closePhosphorMenu();
+  }, true);
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closePhosphorMenu();
   });
@@ -107,10 +132,15 @@
   if (form && toast) form.addEventListener('submit', e => {
     e.preventDefault();
     const name = form.querySelector('[name=name]')?.value || 'UNKNOWN_USER';
-    toast.style.display = 'block';
-    toast.innerHTML = `<strong>TRANSMISIÓN COMPLETA</strong><br>USUARIO: ${name.replace(/[<>]/g, '')}<br>ESTADO: 200 OK<br>PAQUETE ALMACENADO EN HCF_BBS`;
+    toast.classList.add('show');
+    toast.innerHTML = [
+      '<strong>TRANSMISIÓN COMPLETA</strong>',
+      `USUARIO: ${name.replace(/[<>]/g, '')}`,
+      'ESTADO: 200 OK',
+      'PAQUETE ALMACENADO EN HCF_BBS',
+    ].join('<br>');
     form.reset();
-    setTimeout(() => toast.style.display = 'none', 5500);
+    setTimeout(() => toast.classList.remove('show'), 5500);
   });
 
   // Real uploaded dial-up recording for the BBS connection button
@@ -159,11 +189,31 @@
       const comment = $('figcaption', figure)?.textContent?.trim() || img?.alt || 'FRAME';
       lbImg.src = link.getAttribute('href');
       lbImg.alt = img?.alt || '';
-      lbCap.innerHTML = `<span class="lb-command">C:\\HCF\\MEDIA&gt; OPEN ${link.dataset.lightbox || 'FRAME'}</span><span class="lb-comment">${comment.replace(/[<>]/g,'')}</span>`;
-      if (lbCounter) lbCounter.textContent = `${String(current+1).padStart(2,'0')} / ${String(triggers.length).padStart(2,'0')}`;
+      const command = link.dataset.lightbox || 'FRAME';
+      const safeComment = comment.replace(/[<>]/g, '');
+
+      lbCap.innerHTML = [
+        `<span class="lb-command">C:\\HCF\\MEDIA&gt; OPEN ${command}</span>`,
+        `<span class="lb-comment">${safeComment}</span>`,
+      ].join('');
+      if (lbCounter) {
+        const currentLabel = String(current + 1).padStart(2, '0');
+        const totalLabel = String(triggers.length).padStart(2, '0');
+        lbCounter.textContent = `${currentLabel} / ${totalLabel}`;
+      }
     };
-    const open = index => { render(index); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; };
-    const close = () => { lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); lbImg.removeAttribute('src'); document.body.style.overflow=''; };
+    const open = index => {
+      render(index);
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lightbox-open');
+    };
+    const close = () => {
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden', 'true');
+      lbImg.removeAttribute('src');
+      document.body.classList.remove('lightbox-open');
+    };
     triggers.forEach((link,i)=>link.addEventListener('click',e=>{e.preventDefault();open(i)}));
     $('.lightbox-prev')?.addEventListener('click', e=>{e.stopPropagation();render(current-1)});
     $('.lightbox-next')?.addEventListener('click', e=>{e.stopPropagation();render(current+1)});
@@ -209,7 +259,7 @@
       if(cancelled) return;
       if(line < lines.length){
         log.textContent += (line ? '\n' : '') + lines[line];
-        progress.style.width = `${Math.round(((line+1)/lines.length)*100)}%`;
+        progress.className = `boot-progress-step-${line + 1}`;
         status.textContent = line < 2 ? 'ABRIENDO LÍNEA...' : line < 7 ? 'ESTABLECIENDO ENLACE...' : 'NODO DISPONIBLE';
         line++;
         timer=setTimeout(next, line===3 ? 500 : 230);
