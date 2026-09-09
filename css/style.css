@@ -1682,3 +1682,23 @@ body.lightbox-open
 .social a:active {
     text-decoration: none;
 }
+
+/* Footer social icons: remove every link underline/decorative line. */
+.social a,
+.social a:link,
+.social a:visited,
+.social a:hover,
+.social a:focus,
+.social a:focus-visible,
+.social a:active {
+    text-decoration: none;
+    border-bottom: 0;
+    background-image: none;
+}
+
+.social a::before,
+.social a::after {
+    text-decoration: none;
+    border-bottom: 0;
+    background-image: none;
+}
