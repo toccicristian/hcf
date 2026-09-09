@@ -2,6 +2,69 @@
   const $ = (s, root = document) => root.querySelector(s);
   const $$ = (s, root = document) => [...root.querySelectorAll(s)];
 
+
+  // Global CRT phosphor selector. The selected monitor profile persists across pages.
+  const phosphorProfiles = {
+    green: 'VERDE',
+    amber: 'ÁMBAR',
+    blue: 'AZUL',
+    white: 'BLANCO'
+  };
+  const savedPhosphor = (() => {
+    try {
+      const tabValue = (window.name.match(/^hcf-phosphor:(green|amber|blue|white)$/) || [])[1];
+      const value = localStorage.getItem('hcf-phosphor') || tabValue || 'green';
+      return phosphorProfiles[value] ? value : 'green';
+    } catch (e) {
+      const tabValue = (window.name.match(/^hcf-phosphor:(green|amber|blue|white)$/) || [])[1];
+      return phosphorProfiles[tabValue] ? tabValue : 'green';
+    }
+  })();
+  document.documentElement.dataset.phosphor = savedPhosphor;
+  window.name = `hcf-phosphor:${savedPhosphor}`;
+
+  const phosphorPicker = document.createElement('div');
+  phosphorPicker.className = 'phosphor-picker';
+  phosphorPicker.setAttribute('aria-label', 'Selector de fósforo CRT');
+  phosphorPicker.innerHTML = `
+    <button class="phosphor-toggle" type="button" aria-expanded="false">PHOSPHOR: <strong>${phosphorProfiles[savedPhosphor]}</strong> ▾</button>
+    <div class="phosphor-menu" role="menu" aria-label="Tipo de fósforo">
+      ${Object.entries(phosphorProfiles).map(([key,label]) => `<button class="phosphor-option${key === savedPhosphor ? ' active' : ''}" type="button" role="menuitemradio" aria-checked="${key === savedPhosphor}" data-phosphor-value="${key}"><span class="phosphor-swatch"></span>${label}</button>`).join('')}
+      <span class="phosphor-picker-note">MEMORY: LOCAL STORAGE</span>
+    </div>`;
+  document.body.appendChild(phosphorPicker);
+
+  const phosphorToggle = $('.phosphor-toggle', phosphorPicker);
+  const closePhosphorMenu = () => {
+    phosphorPicker.classList.remove('open');
+    phosphorToggle?.setAttribute('aria-expanded', 'false');
+  };
+  phosphorToggle?.addEventListener('click', e => {
+    e.stopPropagation();
+    const open = phosphorPicker.classList.toggle('open');
+    phosphorToggle.setAttribute('aria-expanded', String(open));
+  });
+  $$('.phosphor-option', phosphorPicker).forEach(option => option.addEventListener('click', () => {
+    const value = option.dataset.phosphorValue;
+    if (!phosphorProfiles[value]) return;
+    document.documentElement.dataset.phosphor = value;
+    try { localStorage.setItem('hcf-phosphor', value); } catch (e) {}
+    window.name = `hcf-phosphor:${value}`;
+    $$('.phosphor-option', phosphorPicker).forEach(btn => {
+      const active = btn === option;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-checked', String(active));
+    });
+    phosphorToggle.innerHTML = `PHOSPHOR: <strong>${phosphorProfiles[value]}</strong> ▾`;
+    closePhosphorMenu();
+  }));
+  document.addEventListener('click', e => {
+    if (!phosphorPicker.contains(e.target)) closePhosphorMenu();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closePhosphorMenu();
+  });
+
   // Mobile terminal menu
   const nav = $('#mainNav');
   const hamb = $('#hamb');
