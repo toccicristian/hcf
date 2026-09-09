@@ -11,8 +11,10 @@ function scrollFunction() {
   }
 }
 
-function topFunction() {
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-} 
 
+function topFunction() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
