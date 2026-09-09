@@ -1673,3 +1673,12 @@ body.lightbox-open
     grid-column: auto;
   }
 }
+
+/* Social icons: Font Awesome glyphs should not inherit link underlines. */
+.social a,,
+.social a:visited,,
+.social a:hover,,
+.social a:focus,,
+.social a:active {
+    text-decoration: none;
+}
