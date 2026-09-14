@@ -859,7 +859,6 @@ footer {
 
         border-top: 2px solid var(--color-cian);
         border-left: none;
-        margin: 0 0 0 0;
     }
 
     .redes {
@@ -972,10 +971,10 @@ footer {
 
 
 @media (max-width: 768px) {
-    /* .hero--elenco {
+    .hero--elenco {
         min-height: 680px;
         padding-bottom: 110px;
-    } */
+    }
 
     .hero--elenco::after {
         height: 190px;
@@ -1006,31 +1005,5 @@ footer {
 
     .actor-info {
         padding: 22px 20px 26px;
-    }
-}
-
-/* Quote attribution belongs visually to the elenco hero. */
-.hero--elenco .hero-quote-author {
-    margin-top: 0.75rem;
-    text-align: right;
-    font-size: 0.85em;
-    opacity: 0.8;
-}
-
-/*
- * Elenco: the seventh card is unpaired in the two-column layout.
- * Center it explicitly only while the grid actually has two columns.
- */
-
-/*
- * Elenco: if the final card is unpaired in the two-column layout,
- * center it automatically. Adding an even-numbered actor restores
- * the normal two-column flow without any HTML changes.
- */
-@media (min-width: 981px) {
-    .elenco-grid > .actor:last-child:nth-child(odd) {
-        grid-column: 1 / -1;
-        justify-self: center;
-        width: calc((100% - 28px) / 2);
     }
 }
