@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    
+
+    <title>HALT AND CATCH FIRE</title>
+</head>
+<body>    
+    <header>
+        <div class="no-movil">
+
+        <!-- Botón del menú hamburguesa -->
+        <button 
+            id="menu-toggle"
+            class="menu-toggle"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="menu_bar"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav id="menu_bar" class="fade-in-5">
+            <ul class="glitch">
+                <li class="dropdown">
+                     <a
+                        href="index.html"
+                        class="dropbtn selected-entry"
+                        aria-expanded="false"
+                    >
+                        Inicio
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="./elenco.html">Elenco</a>
+                        <a href="./episodios.html">Guía de Episodios</a>
+                        <a href="./ost.html">Ost</a>
+                    </div>
+                </li>
+                <li><a href="personajes.html">Personajes</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="resenas.html">Reseñas</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+            <a href="index.html">
+                <div class="typewriter">
+                    <h1>HALT AND CATCH FIRE</h1>
+                </div>
+            </a>
+        </div>
+    </header>
+    <div id="top" name="top"></div>
+
+    <section class="hero hero--elenco">
+
+        <div class="hero-elenco">
+            <span class="hero-kicker">/// CAST DATABASE // ENSEMBLE INDEX</span>
+
+            <div class="assembler" aria-label="Código assembler decorativo">
+                <div><span class="asm-command">MOV</span> <span class="asm-argument">SI, CAST_TABLE</span></div>
+                <div><span class="asm-command">CALL</span> <span class="asm-argument">LOAD_PERFORMERS</span></div>
+                <div><span class="asm-command">JMP</span> <span class="asm-argument">NEXT_ROLE</span></div>
+            </div>
+
+
+            <div class="hero-line"></div>
+
+            <p class="hero-status">
+                STATUS: <span>ONLINE</span>
+            </p>
+        </div>
+
+
+        <div class="hero-text glitch espera-y-fade-in">
+            <p>
+                Las computadoras no son el objetivo. Son el medio para llegar a lo que realmente importa.
+            </p>
+            <p class="hero-quote-author">— Joe MacMillan</p>
+        </div>
+    </section>
+
+    <section class="elenco" aria-labelledby="elenco-title">
+
+        <div class="elenco-grid">
+            <article class="actor">
+                <figure class="actor-imagen">
+                    <img
+                        class="imagen-elenco"
+                        src="./images/actores/toby-huss-72ppp-396-fix.jpg"
+                        alt="Toby Huss"
+                        loading="lazy"
+                    >
+                </figure>
+                <div class="actor-info">
+                    <h3>Toby Huss</h3>
+                    <p class="bio-actor">
+                        Interpretó a John Bosworth en Halt and Catch Fire.
+                    </p>
+                    <div class="conocido-por">
+                        <p>Conocido por:</p>
+                        <ul>
+                            <li>King of the Hill (Cotton Hill)</li>
+                            <li>Juego de Criminales (Anthony Lamb)</li>
+                            <li>Seinfeld (Jack)</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <article class="actor">
+                <figure class="actor-imagen">
+                    <img
+                        class="imagen-elenco"
+                        src="./images/actores/susanna-skaggs-72ppp-396.jpg"
+                        alt="Susanna Skaggs"
+                        loading="lazy"
+                    >
+                </figure>
+                <div class="actor-info">
+                    <h3>Susanna Skaggs</h3>
+                    <p class="bio-actor">
+                        Interpretó a Haley Clark en Halt and Catch Fire.
+                    </p>
+                    <div class="conocido-por">
+                        <p>Conocida por:</p>
+                        <ul>
+                            <li>Halt and Catch Fire (Haley Clark)</li>
+                            <li>The Gifted (Joven Polaris)</li>
+                            <li>Mr. Mercedes (Grace)</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <article class="actor">
+                <figure class="actor-imagen">
+                    <img
+                        class="imagen-elenco"
+                        src="./images/actores/scoot-mcnairy-72ppp-396.jpg"
+                        alt="Scoot Mcnairy"
+                        loading="lazy"
+                    >
+                </figure>
+                <div class="actor-info">
+                    <h3>Scoot Mcnairy</h3>
+                    <p class="bio-actor">
+                        Interpretó a Gordon Clark en Halt and Catch Fire.
+                    </p>
+                    <div class="conocido-por">
+                        <p>Conocido por:</p>
+                        <ul>
+                            <li>Argo (Joe Staffor)</li>
+                            <li>12 años esclavo (Brown)</li>
+                            <li>Mátalos Suavemente (Frankie)</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>  
+
+            <article class="actor">
+                <figure class="actor-imagen">
+                    <img
+                        class="imagen-elenco"
+                        src="./images/actores/mackenzie-davis-72ppp-396.jpg"
+                        alt="Mackenzie Davis"
+                        loading="lazy"
+                    >
+                </figure>
+                <div class="actor-info">
+                    <h3>Mackenzie Davis</h3>
+                    <p class="bio-actor">
+                        Interpretó a Cameron Howe en Halt and Catch Fire.
+                    </p>
+                    <div class="conocido-por">
+                        <p>Conocida por:</p>
+                        <ul>
+                            <li>Terminator: Destino Oculto (Grace)</li>
+                            <li>Blade Runner 2049 (Mariette)</li>
+                            <li>Black Mirror (Yorkie - 1ep)</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>                        
+
+            <article class="actor">
+                <figure class="actor-imagen">
+                    <img
+                        class="imagen-elenco"
+                        src="./images/actores/lee-pace-72ppp-396.jpg"
+                        alt="Lee Pace"
+                        loading="lazy"
+                    >
+                </figure>
+                <div class="actor-info">
+                    <h3>Lee Pace</h3>
+                    <p class="bio-actor">
+                        Interpretó a Joe MacMillan en Halt and Catch Fire.
+                    </p>
+                    <div class="conocido-por">
+                        <p>Conocido por:</p>
+                        <ul>
+                            <li>Guardianes de la Galaxia (Ronan)</li>
+                            <li>Foundation (Hermano Día)</li>
+                            <li>Muerte muerte muerte (Greg)</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <article class="actor">
+                <figure class="actor-imagen">
+                    <img
+                        class="imagen-elenco"
+                        src="./images/actores/kerry-bishe-72ppp-396.jpg"
+                        alt="Kerry Bishé"
+                        loading="lazy"
+                    >
+                </figure>
+                <div class="actor-info">
+                    <h3>Kerry Bishé</h3>
+                    <p class="bio-actor">
+                        Interpretó a Donna Clark en Halt and Catch Fire.
+                    </p>
+                    <div class="conocido-por">
+                        <p>Conocida por:</p>
+                        <ul>
+                            <li>Argo (Kathy Stafford)</li>
+                            <li>Madame Web (Constance)</li>
+                            <li>Red State (Cheyenne)</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>     
+
+            <article class="actor">
+                <figure class="actor-imagen">
+                    <img
+                        class="imagen-elenco"
+                        src="./images/actores/kathryn-newton-72ppp-396.jpg"
+                        alt="Kathryn Newton"
+                        loading="lazy"
+                    >
+                </figure>
+                <div class="actor-info">
+                    <h3>Kathryn Newton</h3>
+                    <p class="bio-actor">
+                        Interpretó a Joanie Clark en Halt and Catch Fire.
+                    </p>
+                    <div class="conocido-por">
+                        <p>Conocida por:</p>
+                        <ul>
+                            <li>Ant-Man and the Wasp: Quantumania (Cassie Lang)</li>
+                            <li>Pokémon: Detective Pikachu (Lucy Stevens)</li>
+                            <li>Big Little Lies (Abigail Carlson)</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>     
+
+
+        </div>
+    </section>
+
+
+
+    
+    <footer>
+        <button onclick="topFunction()" id="botonVolverArriba" title="Ir Arriba!"><img src="images/to-top-b.png" alt="volver arriba"></button>    
+        <div class="redes">
+            <a class="redesHome" href="https://www.primevideo.com/-/es/detail/0KTARLEYQXFNPID6E348CMKPVW" target="_blank"><img src="./images/redes/amazon.png" alt="link a la serie en Prime Video"></a>
+            <a class="redesHome" href="https://www.facebook.com/HaltAndCatchFireAMC" target="_blank"><img src="./images/redes/facebook-f-b.png" alt="link al Facebook de la serie"></a>
+            <a class="redesHome" href="https://www.youtube.com/watch?v=DDiA0mFCRvg"><img src="./images/redes/youtube-b.png" alt="link al trailer en Youtube"></a>
+            <a class="redesHome" href="https://www.instagram.com/haltandcatchfireofficial//"><img src="./images/redes/instagram-b.png" alt="link al Instagram de la serie"></a>
+            
+        </div>
+        <div class="copyright">
+            <p> © Realizado por Tocci, Cristian</p>
+        </div>
+    </footer>
+
+    <script src="js/volverArriba.js"></script>
+    <script src="js/menu.js"></script>
+</body>
+</html>
