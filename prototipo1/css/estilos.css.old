@@ -1,0 +1,240 @@
+:root{
+
+    /* TEMA VERDE */
+    /* --color-oscuro:#021413;     */
+    /* --color-fondo:#01362f; */
+    /* --color-frente:#1E6672; */
+    /* --color-texto:#FAFAD2; */
+    
+
+    /* TEMA ROJO */
+    --color-oscuro:#200303;
+    --color-frente:#770000;
+    --color-fondo:#AA0044;
+    --color-texto:#F0D7E0;
+
+
+    /* TEMA VERDE SOBRE NEGRO*/
+    /*activar el selector nav ul li a:hover correspondiente!*/
+    /* --color-oscuro:#200303;
+    --color-fondo:#001f0d;
+    --color-frente:#00bb4e;
+    --color-texto:#52ff9a; */
+
+    --color-terminal:#52ff9a;
+    }
+
+html{
+    scroll-behavior: smooth;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    /* background-image: linear-gradient(var(--color-oscuro) 30%, var(--color-fondo) 95%); */
+    background-image:url("../images/hcf-main-poster-1366-72.jpg");
+
+    color: var(--color-texto);
+    background-size:cover;
+    background-color: #000000;
+    background-attachment: fixed;
+    /* text-align: center; */
+    background-repeat:no-repeat;
+
+    font-family: 'VT323', monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size:xx-large;
+}
+
+h1{
+    color:var(--color-terminal);
+}
+
+p{
+    color:var(--color-terminal);
+}
+
+#top{
+    position:absolute;
+    top:0;
+}
+
+header{
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+}
+
+.logo{
+    height:70px;
+}
+
+
+article.sinopsis{
+    margin: 8rem auto auto auto;
+    width:100%;
+    
+}
+
+article.sinopsis aside{
+    float:left;
+    width:50%;
+}
+
+article.sinopsis aside p{
+    max-width:35rem;
+    margin-left:15rem;
+}
+
+section h1{
+    margin: 5% 10% 0 10%;
+}
+
+#menu_bar{
+    margin: 2rem 0 0 2rem;
+}
+
+nav ul li{
+    display: inline-block;
+    height: 50px;
+}
+nav ul li a{
+    /* font-size: 1.2rem; */
+    padding-right: 2rem;
+    text-transform: uppercase;
+    padding: 10px;
+    color: var(--color-texto);
+    transition: 1.3s
+}
+
+/*Activar para los temas que no son verde sobre negro!*/
+nav ul li a:hover{
+    color: var(--color-texto);
+    background-color: var(--color-frente);
+    transition: 0.8s;
+}
+
+/*Activar para tema verde sobre negro!:*/
+ /* nav ul li a:hover{
+    color: var(--color-fondo);
+    background-color: var(--color-frente);
+    transition: 0.8s;
+ } */
+
+a{
+    text-decoration: none;
+    color: var(--color-oscuro);
+}
+
+.dropbtn{
+    cursor: pointer;
+}
+
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content{
+    display: none;
+    position: absolute;
+    top:2.8rem;
+    background-color: var(--color-fondo);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1; 
+}
+
+.dropdown-content a {
+    color: var(--color-texto);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--color-frente)
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+  
+.dropdown:hover .dropbtn {
+    background-color: var(--color-frente);
+}
+
+.icon { 
+    display: none; 
+}
+
+.selected-entry{
+    text-decoration: underline;
+}
+
+section article div{
+    padding: 0;
+}
+
+
+button{
+    padding:8px 12px;
+    margin:50px 0 0;
+    margin-left:90%;
+    border:2px solid var(--color-fondo);
+    background:0;
+    color:var(--color-fondo);
+    cursor:pointer;
+    transition:all .3s;
+}
+
+section{
+    width:100%;
+}
+
+footer{
+    display:inline-block;
+    margin-top:15rem;
+    height: 14rem;
+    width:100%;
+}
+
+
+.redes{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 9rem;    
+}
+
+.redes a img{
+    max-width: 2.5rem;
+    width: 100%;
+    margin: 0 0.4rem;
+    height: auto;
+    margin:1rem 1rem;
+    transition: transform 0.2s ease-in-out;
+
+}
+
+.redes a img:hover{
+    transform:scale(2,2);
+}
+
+.copyright{
+    width:100%;
+    text-align: center;
+}
+
+
+button:hover{
+    background:var(--color-fondo);
+    color:var(--color-frente);
+}
