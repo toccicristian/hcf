@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    
+
+    <title>HALT AND CATCH FIRE</title>
+</head>
+<body>    
+    <header>
+        <div class="no-movil">
+
+        <!-- Botón del menú hamburguesa -->
+        <button 
+            id="menu-toggle"
+            class="menu-toggle"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="menu_bar"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav id="menu_bar" class="fade-in-5">
+            <ul class="glitch">
+                <li class="dropdown">
+                     <a
+                        href="index.html"
+                        class="dropbtn"
+                        aria-expanded="false"
+                    >
+                        Inicio
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="./elenco.html">Elenco</a>
+                        <div class="dropdown dropdown--episodes">
+                            <a
+                                href="./temporadas.html"
+                                class="dropbtn dropbtn--episodes"
+                                aria-expanded="false"
+                            >
+                                Guía de Episodios
+                            </a>
+                            <div class="dropdown-content dropdown-content--episodes">
+                                <a href="./temporada-1.html">Temporada 1</a>
+                                <a href="./temporada-2.html">Temporada 2</a>
+                                <a href="./temporada-3.html">Temporada 3</a>
+                                <a href="./temporada-4.html">Temporada 4</a>
+                            </div>
+                        </div>
+                        <a href="./ost.html">Ost</a>
+                    </div>
+                </li>
+                <li><a href="personajes.html" class="selected-entry">Personajes</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="resenas.html">Reseñas</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+            <a href="index.html">
+                <div class="typewriter">
+                    <h1>HALT AND CATCH FIRE</h1>
+                </div>
+            </a>
+        </div>
+    </header>
+    <div id="top" name="top"></div>
+
+    <section class="hero hero--elenco">
+        <div class="hero-elenco">
+            <span class="hero-kicker">/// CHARACTER DATABASE // USER PROFILES</span>
+            <div class="assembler" aria-label="Código assembler decorativo">
+                <div><span class="asm-command">MOV</span> <span class="asm-argument">SI, CHARACTER_TABLE</span></div>
+                <div><span class="asm-command">CALL</span> <span class="asm-argument">LOAD_PROFILES</span></div>
+                <div><span class="asm-command">CMP</span> <span class="asm-argument">RELATIONSHIPS, 0</span></div>
+                <div><span class="asm-command">JNE</span> <span class="asm-argument">FOLLOW_CONNECTIONS</span></div>
+            </div>
+            <div class="hero-line"></div>
+            <p class="hero-status">STATUS: <span>ONLINE</span></p>
+        </div>
+        <div class="hero-text glitch espera-y-fade-in">
+            <p>Las computadoras no son el objetivo. Son el medio para llegar a lo que realmente importa.</p>
+            <p class="hero-quote-author">— Joe MacMillan</p>
+        </div>
+    </section>
+
+    <main class="personajes-contenido">
+        <section class="personajes-lista" aria-labelledby="personajes-titulo">
+            <header class="seccion-cabecera">
+                <span class="seccion-kicker">C:\HCF\DATABASE&gt; LOAD /CHARACTERS</span>
+                <h2 id="personajes-titulo">Personajes</h2>
+            </header>
+            <article class="personaje">
+                <aside class="personaje-imagen">
+                    <div class="pixel-reveal" tabindex="0" aria-label="Retrato de Joe MacMillan: imagen NES que revela fotografía al pasar el cursor">
+                        <img class="pixel-reveal__nes" src="./images/personajes/joe_macmillan_nes_256x240.jpg" alt="Retrato pixel art estilo NES de Joe MacMillan">
+                        <img class="pixel-reveal__foto" src="./images/personajes/personajes-joe-macmillan-450.jpg" alt="Fotografía de Joe MacMillan">
+                    </div>
+                </aside>
+                <div class="personaje-info">
+                    <span class="personaje-id">CHAR_01</span>
+                    <h2>Joe MacMillan</h2>
+                    <p>Visionario, vendedor y provocador. <strong class="pivote">Joe</strong> empuja a quienes lo rodean hacia ideas que todavía no existen, aunque su necesidad de perseguir “lo siguiente” suele tener un costo personal.</p>
+                </div>
+            </article>
+            <article class="personaje">
+                <aside class="personaje-imagen">
+                    <div class="pixel-reveal" tabindex="0" aria-label="Retrato de Gordon Clark: imagen NES que revela fotografía al pasar el cursor">
+                        <img class="pixel-reveal__nes" src="./images/personajes/gordon_clark_nes_256x240.jpg" alt="Retrato pixel art estilo NES de Gordon Clark">
+                        <img class="pixel-reveal__foto" src="./images/personajes/personajes-gordon-clark-450.jpg" alt="Fotografía de Gordon Clark">
+                    </div>
+                </aside>
+                <div class="personaje-info">
+                    <span class="personaje-id">CHAR_02</span>
+                    <h2>Gordon Clark</h2>
+                    <p>Ingeniero brillante y obsesivo que encuentra en cada nueva máquina una oportunidad de demostrar lo que puede hacer. Su talento técnico convive con dudas, frustraciones y una mirada cada vez más humana sobre el progreso.</p>
+                </div>
+            </article>
+            <article class="personaje">
+                <aside class="personaje-imagen">
+                    <div class="pixel-reveal" tabindex="0" aria-label="Retrato de Cameron Howe: imagen NES que revela fotografía al pasar el cursor">
+                        <img class="pixel-reveal__nes" src="./images/personajes/cameron_howe_nes_256x240.jpg" alt="Retrato pixel art estilo NES de Cameron Howe">
+                        <img class="pixel-reveal__foto" src="./images/personajes/personajes-cameron-howe-450.jpg" alt="Fotografía de Cameron Howe">
+                    </div>
+                </aside>
+                <div class="personaje-info">
+                    <span class="personaje-id">CHAR_03</span>
+                    <h2>Cameron Howe</h2>
+                    <p>Programadora excepcional, ferozmente independiente y enemiga de las soluciones convencionales. Para <strong class="pivote">Cameron</strong>, el software debe ser un espacio vivo: algo que permita jugar, explorar y conectar personas.</p>
+                </div>
+            </article>
+            <article class="personaje">
+                <aside class="personaje-imagen">
+                    <div class="pixel-reveal" tabindex="0" aria-label="Retrato de Donna Clark: imagen NES que revela fotografía al pasar el cursor">
+                        <img class="pixel-reveal__nes" src="./images/personajes/donna_clark_nes_256x240.jpg" alt="Retrato pixel art estilo NES de Donna Clark">
+                        <img class="pixel-reveal__foto" src="./images/personajes/personajes-dona-clark-450.jpg" alt="Fotografía de Donna Clark">
+                    </div>
+                </aside>
+                <div class="personaje-info">
+                    <span class="personaje-id">CHAR_04</span>
+                    <h2>Donna Clark</h2>
+                    <p>Ingeniera, estratega y emprendedora con una capacidad para ver oportunidades que otros subestiman. <strong class="pivote">Donna</strong> pasa de sostener proyectos ajenos a reclamar un lugar central en la revolución tecnológica.</p>
+                </div>
+            </article>
+            <article class="personaje">
+                <aside class="personaje-imagen">
+                    <div class="pixel-reveal" tabindex="0" aria-label="Retrato de John Bosworth: imagen NES que revela fotografía al pasar el cursor">
+                        <img class="pixel-reveal__nes" src="./images/personajes/john_bosworth_nes_256x240.jpg" alt="Retrato pixel art estilo NES de John Bosworth">
+                        <img class="pixel-reveal__foto" src="./images/personajes/personajes-john-bosworth-450.jpeg" alt="Fotografía de John Bosworth">
+                    </div>
+                </aside>
+                <div class="personaje-info">
+                    <span class="personaje-id">CHAR_05</span>
+                    <h2>John Bosworth</h2>
+                    <p>Ejecutivo texano de vieja escuela que termina encontrando una segunda familia entre programadores y emprendedores. Su pragmatismo, lealtad y humor lo convierten en un inesperado puente entre generaciones.</p>
+                </div>
+            </article>
+            <article class="personaje">
+                <aside class="personaje-imagen">
+                    <div class="pixel-reveal" tabindex="0" aria-label="Retrato de Haley Clark: imagen NES que revela fotografía al pasar el cursor">
+                        <img class="pixel-reveal__nes" src="./images/personajes/haley_clark_nes_256x240.jpg" alt="Retrato pixel art estilo NES de Haley Clark">
+                        <img class="pixel-reveal__foto" src="./images/personajes/personajes-haley-clark-450.jpg" alt="Fotografía de Haley Clark">
+                    </div>
+                </aside>
+                <div class="personaje-info">
+                    <span class="personaje-id">CHAR_06</span>
+                    <h2>Haley Clark</h2>
+                    <p>Hija de Gordon y Donna, crece rodeada de computadoras y absorbe la cultura tecnológica de una manera propia. Su curiosidad por la <strong class="pivote">web</strong> representa a una generación para la que estar conectada ya es algo natural.</p>
+                </div>
+            </article>
+            <article class="personaje">
+                <aside class="personaje-imagen">
+                    <div class="pixel-reveal" tabindex="0" aria-label="Retrato de Joanie Clark: imagen NES que revela fotografía al pasar el cursor">
+                        <img class="pixel-reveal__nes" src="./images/personajes/joanie-clark_nes_256x240.jpg" alt="Retrato pixel art estilo NES de Joanie Clark">
+                        <img class="pixel-reveal__foto" src="./images/personajes/personajes-joanie-clark-450.jpg" alt="Fotografía de Joanie Clark">
+                    </div>
+                </aside>
+                <div class="personaje-info">
+                    <span class="personaje-id">CHAR_07</span>
+                    <h2>Joanie Clark</h2>
+                    <p>Hija mayor de <strong class="pivote">Gordon</strong> y Donna. Inteligente, frontal y escéptica, observa las obsesiones tecnológicas de los adultos con una distancia que muchas veces deja al descubierto sus contradicciones.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <button onclick="topFunction()" id="botonVolverArriba" title="Ir Arriba!"><img src="images/to-top-b.png" alt="volver arriba"></button>    
+        <div class="redes">
+            <a class="redesHome" href="https://www.primevideo.com/-/es/detail/0KTARLEYQXFNPID6E348CMKPVW" target="_blank"><img src="./images/redes/amazon.png" alt="link a la serie en Prime Video"></a>
+            <a class="redesHome" href="https://www.facebook.com/HaltAndCatchFireAMC" target="_blank"><img src="./images/redes/facebook-f-b.png" alt="link al Facebook de la serie"></a>
+            <a class="redesHome" href="https://www.youtube.com/watch?v=DDiA0mFCRvg"><img src="./images/redes/youtube-b.png" alt="link al trailer en Youtube"></a>
+            <a class="redesHome" href="https://www.instagram.com/haltandcatchfireofficial//"><img src="./images/redes/instagram-b.png" alt="link al Instagram de la serie"></a>
+            
+        </div>
+        <div class="copyright">
+            <p> © Realizado por Tocci, Cristian</p>
+        </div>
+    </footer>
+
+    <script src="js/volverArriba.js"></script>
+    <script src="js/menu.js"></script>
+</body>
+</html>

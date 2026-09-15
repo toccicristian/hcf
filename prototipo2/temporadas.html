@@ -78,17 +78,31 @@
     </header>
     <div id="top" name="top"></div>
 
-    <section class="hero">
+    <section class="hero hero--elenco">
 
-        <div class="hero-info">
-            <span class="hero-kicker">/// SYSTEM ARCHIVE 1983–1994</span>
+
+        <div class="hero-elenco">
+
+            <span class="hero-kicker">/// SEASON ARCHIVE // TIMELINE INDEX</span>
 
             <div class="assembler" aria-label="Código assembler decorativo">
-                <div><span class="asm-command">MOV</span> <span class="asm-argument">AX, 1983</span></div>
-                <!-- no me decido si 1983 o 0x07BFh-->
-                <div><span class="asm-command">CALL</span> <span class="asm-argument">REVOLUTION</span></div>
-                <div><span class="asm-command">JMP</span> <span class="asm-argument">FUTURE</span></div>
+                <div><span class="asm-command">MOV</span> <span class="asm-argument">CX, 4</span></div>
+                <div><span class="asm-command">MOV</span> <span class="asm-argument">SI, SEASON_TABLE</span></div>
+                <div><span class="asm-command">CALL</span> <span class="asm-argument">LOAD_TIMELINE</span></div>
+                <div><span class="asm-command">JMP</span> <span class="asm-argument">NEXT_SEASON</span></div>
             </div>
+<!-- 
+            <span class="hero-kicker">/// EPISODE DATABASE // SEQUENCE INDEX</span>
+
+            <div class="assembler" aria-label="Código assembler decorativo">
+                <div><span class="asm-command">MOV</span> <span class="asm-argument">SI, EPISODE_TABLE</span></div>
+                <div><span class="asm-command">CALL</span> <span class="asm-argument">LOAD_RECORDS</span></div>
+                <div><span class="asm-command">JMP</span> <span class="asm-argument">NEXT_EPISODE</span></div>
+            </div> -->
+
+
+<!-- Una cronología de ideas, conflictos y máquinas. Registro a registro, la revolución toma forma. -->
+
 
 
             <div class="hero-line"></div>
@@ -101,10 +115,48 @@
 
         <div class="hero-text glitch espera-y-fade-in">
             <p>
-                En un mundo donde la tecnología apenas comienza a transformar nuestras vidas, un grupo de visionarios se atreve a desafiar las reglas y cambiarlo todo.
+                "Mucha gente va a querer que fracasemos. Pero es porque somos el futuro. Y no hay nada más aterrador que eso."
             </p>
+            <p class="hero-quote-author">— Cameron Howe</p>
         </div>
     </section>
+
+  
+    
+    <main class="temporadas-contenido">
+        <section class="temporadas-lista" aria-labelledby="archivo-temporadas">
+            <header class="seccion-cabecera">
+                <span class="seccion-kicker">C:\HCF\ARCHIVE&gt; DIR /SEASONS</span>
+                <h2 id="archivo-temporadas">Archivo de temporadas</h2>
+            </header>
+            <div class="temporadas-grid">
+            <article class="temporada-card">
+                <span class="temporada-id">SEASON_01 // 1983–1984</span>
+                <h2><a href="temporada-1.html">Temporada 1</a></h2>
+                <p>Joe MacMillan llega a <strong class="pivote">Cardiff</strong> Electric y pone en marcha un arriesgado proyecto para construir una computadora compatible con IBM. Gordon Clark y Cameron Howe quedan atrapados en una carrera de ingeniería, ambición y egos que llevará al equipo hasta COMDEX.</p>
+                <a class="terminal-link" href="temporada-1.html">OPEN SEASON_01 &gt;_</a>
+            </article>
+            <article class="temporada-card">
+                <span class="temporada-id">SEASON_02 // 1985</span>
+                <h2><a href="temporada-2.html">Temporada 2</a></h2>
+                <p>El foco pasa del hardware a las personas conectadas. Cameron y Donna intentan convertir <strong class="pivote">Mutiny</strong> en una comunidad online sostenible, mientras Gordon y Joe buscan nuevas direcciones y descubren que la red puede ser mucho más que una plataforma para juegos.</p>
+                <a class="terminal-link" href="temporada-2.html">OPEN SEASON_02 &gt;_</a>
+            </article>
+            <article class="temporada-card">
+                <span class="temporada-id">SEASON_03 // 1986–1990</span>
+                <h2><a href="temporada-3.html">Temporada 3</a></h2>
+                <p><strong class="pivote">Mutiny</strong> se traslada a Silicon Valley con la intención de crecer, pero el capital, la competencia y las diferencias internas ponen a prueba sus alianzas. Al fondo comienza a aparecer una idea todavía difusa que cambiará la informática: la World Wide Web.</p>
+                <a class="terminal-link" href="temporada-3.html">OPEN SEASON_03 &gt;_</a>
+            </article>
+            <article class="temporada-card">
+                <span class="temporada-id">SEASON_04 // 1990s</span>
+                <h2><a href="temporada-4.html">Temporada 4</a></h2>
+                <p>La <strong class="pivote">web</strong> ya no es una curiosidad y la nueva carrera consiste en encontrar una forma de organizarla y descubrir qué busca la gente. Joe, Gordon, Cameron y Donna encaran nuevos proyectos mientras sus vínculos pesan tanto como cualquier innovación.</p>
+                <a class="terminal-link" href="temporada-4.html">OPEN SEASON_04 &gt;_</a>
+            </article>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <button onclick="topFunction()" id="botonVolverArriba" title="Ir Arriba!"><img src="images/to-top-b.png" alt="volver arriba"></button>    
