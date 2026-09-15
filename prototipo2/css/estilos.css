@@ -1034,3 +1034,1565 @@ footer {
         width: calc((100% - 28px) / 2);
     }
 }
+
+/* Submenú de Guía de Episodios. */
+.dropdown--episodes {
+    position: relative;
+}
+
+.dropdown-content--episodes {
+    top: 0;
+    left: 100%;
+    min-width: 190px;
+}
+
+@media (max-width: 768px) {
+    .dropdown-content--episodes {
+        position: static;
+        min-width: 0;
+        margin-left: 1rem;
+    }
+
+    .dropdown--episodes:hover > .dropdown-content--episodes,
+    .dropdown--episodes:focus-within > .dropdown-content--episodes {
+        display: none;
+    }
+
+    .dropdown--episodes.open > .dropdown-content--episodes {
+        display: block;
+    }
+}
+
+/*
+ * Dropdowns anidados:
+ * cada nivel controla únicamente su contenido directo.
+ */
+@media (min-width: 769px) {
+    .dropdown > .dropdown-content {
+        display: none;
+    }
+
+    .dropdown:hover > .dropdown-content,
+    .dropdown:focus-within > .dropdown-content {
+        display: block;
+    }
+
+    .dropdown--episodes > .dropdown-content--episodes {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        z-index: 30;
+        min-width: 190px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dropdown > .dropdown-content {
+        display: none;
+    }
+
+    .dropdown.open > .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-content--episodes {
+        position: static;
+        margin-left: 1rem;
+        min-width: 0;
+    }
+}
+
+/*
+ * Menú de episodios anidado.
+ *
+ * El primer dropdown tenía overflow: hidden; eso recortaba por completo
+ * cualquier submenu colocado a su derecha con left: 100%.
+ */
+@media (min-width: 769px) {
+    #menu_bar > ul > .dropdown > .dropdown-content {
+        overflow: visible;
+    }
+
+    .dropdown--episodes {
+        position: relative;
+    }
+
+    .dropdown--episodes > .dropdown-content--episodes {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        z-index: 40;
+        min-width: 190px;
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateX(-8px);
+    }
+
+    .dropdown--episodes:hover > .dropdown-content--episodes,
+    .dropdown--episodes:focus-within > .dropdown-content--episodes {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(0);
+    }
+}
+
+
+/* ============================================================
+   ARCHIVO DE TEMPORADAS / EPISODIOS / PERSONAJES
+   Extensiones del mismo lenguaje visual de terminal.
+   ============================================================ */
+.temporadas-contenido, .temporada-contenido, .personajes-contenido {
+    background: var(--color-fondo);
+    color: var(--color-texto);
+}
+.temporadas-lista, .episodios, .personajes-lista {
+    width: min(1100px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 54px 0 72px;
+}
+.seccion-cabecera { margin-bottom: 28px; border-bottom: 1px solid var(--color-cian); padding-bottom: 14px; }
+.seccion-kicker, .temporada-id, .episodio-numero, .personaje-id { color: var(--color-cian); letter-spacing: .08em; }
+.seccion-cabecera h2 { margin: 8px 0 0; color: var(--color-verde-terminal); font-size: clamp(2rem, 4vw, 3rem); }
+.temporadas-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 24px; }
+.temporada-card, .episodio, .personaje { background: var(--color-superficie); border: 1px solid var(--color-borde); box-shadow: 0 0 12px var(--color-sombra); }
+.temporada-card { padding: 26px; }
+.temporada-card h2 { margin: 8px 0 12px; }
+.temporada-card h2 a { color: var(--color-verde-terminal); text-decoration: none; }
+.temporada-card h2 a:hover, .terminal-link:hover { color: var(--color-cian); text-shadow: 0 0 8px var(--color-cian); }
+.temporada-card p, .episodio p, .personaje-info p { line-height: 1.5; }
+.terminal-link { display: inline-block; margin-top: 12px; color: var(--color-ambar); text-decoration: none; }
+.episodios-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+.episodio { padding: 22px; }
+.episodio h3 { margin: 5px 0 8px; color: var(--color-verde-terminal); font-size: 1.6rem; }
+.episodio p { margin: 0; }
+.season-nav { width: min(1100px, calc(100% - 40px)); margin: -30px auto 70px; display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; }
+.season-nav a { color: var(--color-cian); text-decoration: none; padding: 10px 12px; border: 1px solid var(--color-borde); background: var(--color-superficie); }
+.season-nav a:last-child { text-align: right; }
+.season-nav a:hover { color: var(--color-verde-terminal); border-color: var(--color-verde-terminal); box-shadow: 0 0 10px var(--color-sombra); }
+.personajes-lista > .personaje + .personaje { margin-top: 26px; }
+.personaje { display: grid; grid-template-columns: 300px 1fr; overflow: hidden; }
+.personaje:nth-of-type(even) { grid-template-columns: 1fr 300px; }
+.personaje:nth-of-type(even) .personaje-imagen { order: 2; }
+.personaje:nth-of-type(even) .personaje-info { order: 1; }
+.personaje-imagen { margin: 0; min-height: 280px; background: #000; display: grid; place-items: center; border-right: 1px solid var(--color-borde); }
+.personaje:nth-of-type(even) .personaje-imagen { border-right: 0; border-left: 1px solid var(--color-borde); }
+.personaje-info { padding: 30px; align-self: center; }
+.personaje-info h2 { color: var(--color-verde-terminal); margin: 7px 0 12px; font-size: 2rem; }
+.pixel-reveal { position: relative; width: 256px; height: 240px; overflow: hidden; background: #000; image-rendering: pixelated; }
+.pixel-reveal img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; }
+.pixel-reveal__nes { z-index: 2; image-rendering: pixelated; opacity: 1; transition: opacity .7s steps(8,end), filter .7s steps(8,end), transform .7s steps(8,end); }
+.pixel-reveal__foto { z-index: 1; opacity: 0; filter: contrast(1.8) saturate(.65); transform: scale(1.03); transition: opacity .7s steps(8,end), filter .7s steps(8,end), transform .7s steps(8,end); }
+.pixel-reveal:hover .pixel-reveal__nes, .pixel-reveal:focus .pixel-reveal__nes { opacity: 0; filter: contrast(2); transform: scale(1.02); }
+.pixel-reveal:hover .pixel-reveal__foto, .pixel-reveal:focus .pixel-reveal__foto { opacity: 1; filter: none; transform: scale(1); }
+.pixel-reveal::after { content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; background: repeating-linear-gradient(0deg, transparent 0 7px, rgba(0,245,255,.12) 7px 8px); transition: opacity .25s steps(3,end); }
+.pixel-reveal:hover::after, .pixel-reveal:focus::after { opacity: 1; animation: depixel-scan .7s steps(8,end) forwards; }
+@keyframes depixel-scan { 0% { clip-path: inset(0 0 100% 0); } 100% { clip-path: inset(0); } }
+@media (max-width: 768px) {
+    .temporadas-grid, .episodios-grid { grid-template-columns: 1fr; }
+    .season-nav { grid-template-columns: 1fr; margin-top: -35px; }
+    .season-nav span { display: none; }
+    .season-nav a { text-align: center !important; }
+    .personaje, .personaje:nth-of-type(even) { grid-template-columns: 1fr; }
+    .personaje:nth-of-type(even) .personaje-imagen, .personaje:nth-of-type(even) .personaje-info { order: initial; }
+    .personaje-imagen, .personaje:nth-of-type(even) .personaje-imagen { border: 0; border-bottom: 1px solid var(--color-borde); padding: 18px 0; }
+}
+
+/* ==========================================================
+   REVISIÓN V4 — retratos y tarjetas de temporadas
+   ========================================================== */
+
+/* Retratos: dos imágenes reales, sin pseudo-elementos que puedan taparlas. */
+.pixel-reveal {
+    position: relative;
+    display: block;
+    width: 256px;
+    height: 240px;
+    min-width: 256px;
+    overflow: hidden;
+    background: #000;
+}
+
+.pixel-reveal img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 256px;
+    height: 240px;
+    max-width: none;
+    border: 0;
+}
+
+.pixel-reveal__nes {
+    z-index: 2;
+    object-fit: contain;
+    opacity: 1;
+    visibility: visible;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    transition:
+        opacity .65s steps(8, end),
+        transform .65s steps(8, end);
+}
+
+.pixel-reveal__foto {
+    z-index: 1;
+    object-fit: cover;
+    opacity: 1;
+    visibility: visible;
+}
+
+.pixel-reveal:hover .pixel-reveal__nes,
+.pixel-reveal:focus .pixel-reveal__nes,
+.pixel-reveal:focus-visible .pixel-reveal__nes {
+    opacity: 0;
+    transform: scale(1.05);
+}
+
+/* Desactivar cualquier overlay anterior. */
+.pixel-reveal::before,
+.pixel-reveal::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Cada tarjeta ocupa toda la altura disponible y el enlace queda al fondo. */
+.temporadas-grid {
+    align-items: stretch;
+}
+
+.temporada-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.temporada-card .terminal-link {
+    display: inline-block;
+    margin-top: auto;
+    padding-top: 1.4rem;
+    align-self: flex-start;
+}
+
+/* ==========================================================
+   REVISIÓN V5 — escala tipográfica + retratos normalizados
+   ========================================================== */
+
+/* Escala de lectura de las secciones de contenido. */
+.elenco {
+    font-size: 1.45rem;
+}
+
+.elenco .actor p,
+.elenco .actor li,
+.elenco .elenco-cabecera p {
+    font-size: 1em;
+    line-height: 1.55;
+}
+
+.episodios,
+.temporada-contenido .episodios,
+.personajes-lista {
+    font-size: 1.45rem;
+}
+
+.episodio h3 {
+    font-size: 1.6em;
+}
+
+.episodio p,
+.personaje-info p {
+    font-size: 1em;
+    line-height: 1.55;
+}
+
+.personaje-info h2 {
+    font-size: 1.7em;
+}
+
+/* Retratos: NES visible por defecto, foto debajo.
+   Sin filtros ni pseudo-elementos que puedan oscurecer las imágenes. */
+.pixel-reveal {
+    position: relative;
+    display: block;
+    width: 256px;
+    height: 240px;
+    min-width: 256px;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.pixel-reveal img,
+.pixel-reveal > img {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 256px !important;
+    height: 240px !important;
+    max-width: none !important;
+    visibility: visible !important;
+    border: 0 !important;
+    filter: none !important;
+}
+
+.pixel-reveal__foto,
+.pixel-reveal > .pixel-reveal__foto {
+    z-index: 1 !important;
+    object-fit: cover !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.pixel-reveal__nes,
+.pixel-reveal > .pixel-reveal__nes {
+    z-index: 2 !important;
+    object-fit: contain !important;
+    opacity: 1 !important;
+    transform: none;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    transition:
+        opacity .65s steps(8, end),
+        transform .65s steps(8, end);
+}
+
+.pixel-reveal:hover > .pixel-reveal__nes,
+.pixel-reveal:focus > .pixel-reveal__nes,
+.pixel-reveal:focus-visible > .pixel-reveal__nes {
+    opacity: 0 !important;
+    transform: scale(1.04);
+}
+
+.pixel-reveal::before,
+.pixel-reveal::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* ==========================================================
+   ESCALA TIPOGRÁFICA — +50% adicional en secciones de contenido
+   ========================================================== */
+
+/* Elenco */
+.elenco {
+    font-size: 2.175rem;
+}
+
+/* Guía de episodios / páginas de temporada */
+.episodios,
+.temporada-contenido .episodios {
+    font-size: 2.175rem;
+}
+
+/* Índice de temporadas */
+.temporadas-lista,
+.temporadas-section {
+    font-size: 2.175rem;
+}
+
+/* Personajes */
+.personajes-lista,
+.personajes-section {
+    font-size: 2.175rem;
+}
+
+/* Mantener una lectura cómoda con el nuevo tamaño. */
+.elenco p,
+.episodios p,
+.temporada-contenido .episodios p,
+.temporadas-lista p,
+.temporadas-section p,
+.personajes-lista p,
+.personajes-section p {
+    line-height: 1.55;
+}
+
+/* ==========================================================
+   PERSONAJES — composición ancha + retratos 256:240
+   ========================================================== */
+
+/* Casi todo el viewport, conservando aire lateral. */
+.personajes-lista,
+.personajes-section {
+    width: min(94vw, 1500px);
+    max-width: none;
+    margin-inline: auto;
+}
+
+/* El article reparte el espacio entre un retrato amplio y el texto. */
+.personaje {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(360px, 42%) minmax(0, 1fr);
+    align-items: stretch;
+    gap: clamp(2rem, 4vw, 4.5rem);
+    padding: clamp(1.5rem, 3vw, 3rem);
+}
+
+/* El aside se adapta al ancho asignado por el grid. */
+.personaje aside,
+.personaje .personaje-media {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* El retrato llena el aside sin deformarse.
+   256 / 240 = 16 / 15. */
+.personaje .pixel-reveal {
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    aspect-ratio: 16 / 15;
+    flex: 1 1 auto;
+}
+
+/* Las dos capas llenan exactamente el nuevo marco. */
+.personaje .pixel-reveal img,
+.personaje .pixel-reveal > img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+}
+
+.personaje .pixel-reveal__nes {
+    object-fit: contain !important;
+}
+
+.personaje .pixel-reveal__foto {
+    object-fit: cover !important;
+}
+
+/* En los artículos pares invertimos las columnas sin alterar el HTML. */
+.personaje:nth-child(even) aside,
+.personaje:nth-child(even) .personaje-media {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.personaje:nth-child(even) .personaje-info {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+/* Tablet: reducimos la proporción dedicada a la imagen. */
+@media (max-width: 980px) {
+    .personajes-lista,
+    .personajes-section {
+        width: min(92vw, 1100px);
+    }
+
+    .personaje {
+        grid-template-columns: minmax(280px, 40%) minmax(0, 1fr);
+        gap: 2rem;
+    }
+}
+
+/* Mobile: imagen y texto se apilan; se anula la inversión de pares. */
+@media (max-width: 768px) {
+    .personajes-lista,
+    .personajes-section {
+        width: 92vw;
+    }
+
+    .personaje {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .personaje aside,
+    .personaje .personaje-media,
+    .personaje:nth-child(even) aside,
+    .personaje:nth-child(even) .personaje-media,
+    .personaje:nth-child(even) .personaje-info {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .personaje .pixel-reveal {
+        width: min(100%, 560px);
+        margin-inline: auto;
+    }
+}
+
+/* ==========================================================
+   PERSONAJES — corrección de alternancia pares
+   ========================================================== */
+
+/*
+ * nth-child() contaba también otros hermanos del contenedor.
+ * nth-of-type() cuenta específicamente los <article>, por lo que
+ * Gordon, Donna y Haley reciben exactamente la misma geometría
+ * ancha que los impares, pero con las columnas invertidas.
+ */
+.personaje:nth-of-type(even) {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 42%);
+}
+
+.personaje:nth-of-type(even) aside,
+.personaje:nth-of-type(even) .personaje-media {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    min-width: 0;
+}
+
+.personaje:nth-of-type(even) .personaje-info {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+}
+
+.personaje:nth-of-type(even) .pixel-reveal {
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    aspect-ratio: 16 / 15;
+}
+
+@media (max-width: 980px) and (min-width: 769px) {
+    .personaje:nth-of-type(even) {
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 40%);
+    }
+}
+
+@media (max-width: 768px) {
+    .personaje:nth-of-type(even) {
+        grid-template-columns: 1fr;
+    }
+
+    .personaje:nth-of-type(even) aside,
+    .personaje:nth-of-type(even) .personaje-media,
+    .personaje:nth-of-type(even) .personaje-info {
+        grid-column: 1;
+        grid-row: auto;
+    }
+}
+
+/* ==========================================================
+   PERSONAJES — alternancia visual definitiva
+   ========================================================== */
+
+/*
+ * Todos los articles conservan el mismo grid.
+ * En los pares invertimos visualmente aside/texto con order,
+ * sin cambiar las dimensiones del retrato.
+ */
+.personaje > aside,
+.personaje > .personaje-media {
+    order: 1;
+}
+
+.personaje > .personaje-info {
+    order: 2;
+}
+
+.personaje:nth-of-type(even) > aside,
+.personaje:nth-of-type(even) > .personaje-media {
+    grid-column: 2 !important;
+    grid-row: 1;
+    order: 2;
+}
+
+.personaje:nth-of-type(even) > .personaje-info {
+    grid-column: 1 !important;
+    grid-row: 1;
+    order: 1;
+}
+
+/* En móvil vuelve a una única columna, siempre retrato primero. */
+@media (max-width: 768px) {
+    .personaje > aside,
+    .personaje > .personaje-media,
+    .personaje:nth-of-type(even) > aside,
+    .personaje:nth-of-type(even) > .personaje-media {
+        grid-column: 1 !important;
+        grid-row: auto;
+        order: 1;
+    }
+
+    .personaje > .personaje-info,
+    .personaje:nth-of-type(even) > .personaje-info {
+        grid-column: 1 !important;
+        grid-row: auto;
+        order: 2;
+    }
+}
+
+/* ==========================================================
+   PERSONAJES — alternancia corregida sobre .personaje-imagen
+   ========================================================== */
+
+/*
+ * El aside real del HTML se llama .personaje-imagen.
+ * Las reglas anteriores apuntaban también a .personaje-media,
+ * clase que no existe en estos articles.
+ */
+.personaje:nth-of-type(odd) {
+    grid-template-columns: minmax(360px, 42%) minmax(0, 1fr);
+}
+
+.personaje:nth-of-type(odd) > .personaje-imagen {
+    grid-column: 1 !important;
+    grid-row: 1;
+    order: 1;
+}
+
+.personaje:nth-of-type(odd) > .personaje-info {
+    grid-column: 2 !important;
+    grid-row: 1;
+    order: 2;
+}
+
+.personaje:nth-of-type(even) {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 42%);
+}
+
+.personaje:nth-of-type(even) > .personaje-info {
+    grid-column: 1 !important;
+    grid-row: 1;
+    order: 1;
+}
+
+.personaje:nth-of-type(even) > .personaje-imagen {
+    grid-column: 2 !important;
+    grid-row: 1;
+    order: 2;
+}
+
+/* El retrato ocupa el ancho real del aside en ambos lados. */
+.personaje > .personaje-imagen {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.personaje > .personaje-imagen > .pixel-reveal {
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    aspect-ratio: 16 / 15;
+}
+
+@media (max-width: 980px) and (min-width: 769px) {
+    .personaje:nth-of-type(odd) {
+        grid-template-columns: minmax(280px, 40%) minmax(0, 1fr);
+    }
+
+    .personaje:nth-of-type(even) {
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 40%);
+    }
+}
+
+@media (max-width: 768px) {
+    .personaje:nth-of-type(odd),
+    .personaje:nth-of-type(even) {
+        grid-template-columns: 1fr;
+    }
+
+    .personaje:nth-of-type(odd) > .personaje-imagen,
+    .personaje:nth-of-type(even) > .personaje-imagen {
+        grid-column: 1 !important;
+        grid-row: auto;
+        order: 1;
+    }
+
+    .personaje:nth-of-type(odd) > .personaje-info,
+    .personaje:nth-of-type(even) > .personaje-info {
+        grid-column: 1 !important;
+        grid-row: auto;
+        order: 2;
+    }
+}
+
+/* ==========================================================
+   ELENCO — imágenes confinadas al contenedor del retrato
+   ========================================================== */
+
+.actor-imagen {
+    position: relative;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.actor-imagen > .imagen-elenco {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    margin: 0;
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* ==========================================================
+   AJUSTES DE COMPOSICIÓN — escritorio
+   ========================================================== */
+
+@media (min-width: 981px) {
+
+    /* ------------------------------------------------------
+       TEMPORADAS
+       Más respiración horizontal cuanto más ancho haya.
+       ------------------------------------------------------ */
+    .temporadas-grid {
+        width: min(92vw, 1500px);
+        margin-inline: auto;
+        column-gap: clamp(2.5rem, 5vw, 6rem);
+        row-gap: clamp(2rem, 4vw, 4rem);
+    }
+
+    /* ------------------------------------------------------
+       PERSONAJES
+       Los impares se desplazan hacia la izquierda y los pares
+       hacia la derecha. También aumenta el ritmo vertical.
+       ------------------------------------------------------ */
+    .personajes-lista,
+    .personajes-section {
+        width: min(96vw, 1600px);
+    }
+
+    .personaje {
+        width: min(92%, 1450px);
+        margin-top: 0;
+        margin-bottom: clamp(3.5rem, 6vw, 7rem);
+    }
+
+    .personaje:nth-of-type(odd) {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    .personaje:nth-of-type(even) {
+        margin-left: auto;
+        margin-right: 0;
+    }
+
+    /* ------------------------------------------------------
+       ELENCO
+       Cada tarjeta puede crecer hacia su borde exterior.
+       El grid permanece estable porque la expansión es visual
+       mediante transform, sin recalcular las columnas.
+       ------------------------------------------------------ */
+    .elenco-grid {
+        overflow: visible;
+        column-gap: clamp(2rem, 4vw, 4rem);
+        row-gap: 3rem;
+    }
+
+    .elenco-grid > .actor {
+        position: relative;
+        z-index: 1;
+        transform-origin: center;
+        transition:
+            transform .42s steps(6, end),
+            box-shadow .42s steps(6, end);
+        will-change: transform;
+    }
+
+    .elenco-grid > .actor:nth-of-type(odd) {
+        transform-origin: right center;
+    }
+
+    .elenco-grid > .actor:nth-of-type(even) {
+        transform-origin: left center;
+    }
+
+    /*
+     * Al escalar sólo horizontalmente:
+     * - tarjeta izquierda: el borde derecho queda anclado y crece a la izquierda;
+     * - tarjeta derecha: el borde izquierdo queda anclado y crece a la derecha.
+     */
+    .elenco-grid > .actor:nth-of-type(odd):hover,
+    .elenco-grid > .actor:nth-of-type(odd):focus-within {
+        z-index: 10;
+        transform: scaleX(1.34);
+        box-shadow: 0 0 24px var(--color-sombra);
+    }
+
+    .elenco-grid > .actor:nth-of-type(even):hover,
+    .elenco-grid > .actor:nth-of-type(even):focus-within {
+        z-index: 10;
+        transform: scaleX(1.34);
+        box-shadow: 0 0 24px var(--color-sombra);
+    }
+
+    /*
+     * La tarjeta se ensancha, pero texto y controles recuperan
+     * su proporción para no verse estirados.
+     */
+    .elenco-grid > .actor:hover > * ,
+    .elenco-grid > .actor:focus-within > * {
+        transform: scaleX(.7463);
+        transition: transform .42s steps(6, end);
+    }
+
+    /*
+     * La imagen sí aprovecha el ancho adicional: object-fit cover
+     * revela una franja mayor de la fotografía dentro del viewport.
+     */
+    .elenco-grid > .actor:hover .actor-imagen,
+    .elenco-grid > .actor:focus-within .actor-imagen {
+        transform: scaleX(1.34);
+    }
+
+    .elenco-grid > .actor:hover .actor-imagen > .imagen-elenco,
+    .elenco-grid > .actor:focus-within .actor-imagen > .imagen-elenco {
+        object-fit: cover;
+    }
+}
+
+/* Sin expansión lateral en tablet/mobile para evitar overflow. */
+@media (max-width: 980px) {
+    .elenco-grid > .actor,
+    .elenco-grid > .actor:hover,
+    .elenco-grid > .actor:focus-within,
+    .elenco-grid > .actor > *,
+    .elenco-grid > .actor:hover > *,
+    .elenco-grid > .actor:focus-within > *,
+    .elenco-grid > .actor .actor-imagen {
+        transform: none;
+    }
+}
+
+/* ==========================================================
+   CORRECCIONES DE LAYOUT — temporadas / episodios / elenco
+   ========================================================== */
+
+@media (min-width: 981px) {
+
+    /* ------------------------------------------------------
+       TEMPORADAS — centrar el conjunto y separar las tarjetas.
+       No imponemos un ancho extra al grid: dejamos que el
+       contenedor original determine su geometría y repartimos
+       el espacio simétricamente.
+       ------------------------------------------------------ */
+    .temporadas-grid {
+        width: 100%;
+        max-width: 1500px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: clamp(1.5rem, 3vw, 4rem);
+        padding-right: clamp(1.5rem, 3vw, 4rem);
+        box-sizing: border-box;
+        column-gap: clamp(3rem, 5vw, 6.5rem) !important;
+        row-gap: clamp(2.5rem, 4vw, 4rem) !important;
+        justify-content: center;
+    }
+
+    /* ------------------------------------------------------
+       TEMPORADA-X — separación real entre episodios.
+       Esta regla apunta a .episodios-grid, que es el grid
+       interno de las páginas temporada-1 ... temporada-4.
+       ------------------------------------------------------ */
+    .episodios-grid {
+        column-gap: clamp(3rem, 5vw, 6rem) !important;
+        row-gap: clamp(3rem, 4vw, 5rem) !important;
+    }
+
+    /* Fallback por si alguna versión usa .episodios como grid. */
+    .temporada-contenido .episodios {
+        column-gap: clamp(3rem, 5vw, 6rem);
+        row-gap: clamp(3rem, 4vw, 5rem);
+    }
+
+    /* ------------------------------------------------------
+       ELENCO — expansión REAL del viewport de imagen.
+       Anulamos el scaleX anterior: la tarjeta aumenta su width,
+       mientras la fotografía conserva sus proporciones.
+       ------------------------------------------------------ */
+    .elenco-grid > .actor,
+    .elenco-grid > .actor:hover,
+    .elenco-grid > .actor:focus-within {
+        transform: none !important;
+    }
+
+    .elenco-grid > .actor > *,
+    .elenco-grid > .actor:hover > *,
+    .elenco-grid > .actor:focus-within > *,
+    .elenco-grid > .actor .actor-imagen,
+    .elenco-grid > .actor:hover .actor-imagen,
+    .elenco-grid > .actor:focus-within .actor-imagen {
+        transform: none !important;
+    }
+
+    .elenco-grid > .actor {
+        width: 100%;
+        max-width: none;
+        transition:
+            width .42s steps(6, end),
+            margin .42s steps(6, end),
+            box-shadow .42s steps(6, end);
+    }
+
+    /*
+     * La tarjeta gana ancho de verdad.
+     * Izquierda: conserva el borde derecho y crece hacia afuera.
+     * Derecha: conserva el borde izquierdo y crece hacia afuera.
+     */
+    .elenco-grid > .actor:nth-of-type(odd):hover,
+    .elenco-grid > .actor:nth-of-type(odd):focus-within {
+        width: 134%;
+        margin-left: -34%;
+        margin-right: 0;
+        z-index: 20;
+        box-shadow: 0 0 24px var(--color-sombra);
+    }
+
+    .elenco-grid > .actor:nth-of-type(even):hover,
+    .elenco-grid > .actor:nth-of-type(even):focus-within {
+        width: 134%;
+        margin-left: 0;
+        margin-right: -34%;
+        z-index: 20;
+        box-shadow: 0 0 24px var(--color-sombra);
+    }
+
+    /*
+     * La imagen sigue midiendo 100% del viewport que ahora es
+     * físicamente más ancho. object-fit: cover recorta menos
+     * lateralmente; no hay scaleX y por lo tanto no se deforma.
+     */
+    .elenco-grid > .actor .actor-imagen {
+        width: 100%;
+        max-width: none;
+        overflow: hidden;
+    }
+
+    .elenco-grid > .actor .actor-imagen > .imagen-elenco {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center top;
+        transform: none !important;
+    }
+}
+
+/* ==========================================================
+   LAYOUT V3 — corrección estructural
+   ========================================================== */
+
+@media (min-width: 981px) {
+
+    /* ------------------------------------------------------
+       TEMPORADAS
+       Conservamos tarjetas anchas. El aire extra se obtiene
+       ensanchando el contenedor general, no quitándole ancho
+       a las tarjetas.
+       ------------------------------------------------------ */
+    .temporadas-lista {
+        width: min(1500px, calc(100% - clamp(60px, 7vw, 140px)));
+        max-width: none;
+    }
+
+    .temporadas-grid {
+        width: 100%;
+        max-width: none;
+        padding: 0;
+        margin-inline: auto;
+        grid-template-columns: repeat(2, minmax(480px, 1fr));
+        column-gap: clamp(40px, 4vw, 76px) !important;
+        row-gap: clamp(36px, 3vw, 58px) !important;
+    }
+
+    /* ------------------------------------------------------
+       TEMPORADA-X
+       Misma idea: más ancho disponible + gap, de modo que
+       los episodios no se vuelvan angostos al separarlos.
+       ------------------------------------------------------ */
+    .temporada-contenido .episodios,
+    .episodios {
+        width: min(1500px, calc(100% - clamp(60px, 7vw, 140px)));
+        max-width: none;
+    }
+
+    .episodios-grid {
+        grid-template-columns: repeat(2, minmax(480px, 1fr));
+        column-gap: clamp(40px, 4vw, 76px) !important;
+        row-gap: clamp(36px, 3vw, 58px) !important;
+    }
+
+    /* ------------------------------------------------------
+       ELENCO
+       La zona de texto conserva SU ancho.
+       Lo único que crece es la columna de imagen.
+
+       La fotografía tiene un ancho de revelado propio (360px):
+       en reposo el figure muestra sólo 220px de ese plano;
+       en hover el viewport pasa a 360px y descubre la parte
+       que estaba recortada. La imagen NO se escala en hover.
+       ------------------------------------------------------ */
+    .elenco-grid {
+        overflow: visible;
+    }
+
+    .elenco-grid > .actor {
+        --foto-cerrada: 220px;
+        --foto-abierta: 360px;
+        --extra-foto: 140px;
+
+        width: 100%;
+        max-width: none;
+        grid-template-columns: var(--foto-cerrada) minmax(0, 1fr);
+        overflow: hidden;
+        transform: none !important;
+        transition:
+            width .42s steps(7, end),
+            margin .42s steps(7, end),
+            grid-template-columns .42s steps(7, end),
+            box-shadow .42s steps(7, end);
+    }
+
+    .elenco-grid > .actor > *,
+    .elenco-grid > .actor:hover > *,
+    .elenco-grid > .actor:focus-within > *,
+    .elenco-grid > .actor .actor-imagen,
+    .elenco-grid > .actor:hover .actor-imagen,
+    .elenco-grid > .actor:focus-within .actor-imagen {
+        transform: none !important;
+    }
+
+    .elenco-grid > .actor .actor-imagen {
+        position: relative;
+        width: auto;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    /*
+       El plano fotográfico ya mide 360px estando cerrado.
+       El figure de 220px funciona como una ventana.
+       Por eso al abrir la columna se REVELA imagen existente.
+    */
+    .elenco-grid > .actor .actor-imagen > .imagen-elenco {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: var(--foto-abierta) !important;
+        height: 100% !important;
+        max-width: none !important;
+        transform: translateX(-50%) !important;
+        object-fit: cover !important;
+        object-position: center top;
+        transition: none;
+    }
+
+    /* La tarjeta izquierda mantiene fijo su borde derecho. */
+    .elenco-grid > .actor:nth-of-type(odd):not(:last-child):hover,
+    .elenco-grid > .actor:nth-of-type(odd):not(:last-child):focus-within {
+        width: calc(100% + var(--extra-foto));
+        margin-left: calc(-1 * var(--extra-foto));
+        margin-right: 0;
+        grid-template-columns: var(--foto-abierta) minmax(0, 1fr);
+        z-index: 20;
+    }
+
+    /* La tarjeta derecha mantiene fijo su borde izquierdo. */
+    .elenco-grid > .actor:nth-of-type(even):hover,
+    .elenco-grid > .actor:nth-of-type(even):focus-within {
+        width: calc(100% + var(--extra-foto));
+        margin-left: 0;
+        margin-right: calc(-1 * var(--extra-foto));
+        grid-template-columns: var(--foto-abierta) minmax(0, 1fr);
+        z-index: 20;
+    }
+
+    /*
+       La última tarjeta está centrada en las dos columnas.
+       La expandimos simétricamente para no desplazarla hacia
+       uno de los lados.
+    */
+    .elenco-grid > .actor:last-child:nth-of-type(odd):hover,
+    .elenco-grid > .actor:last-child:nth-of-type(odd):focus-within {
+        width: calc(((100% - 28px) / 2) + var(--extra-foto));
+        margin-left: calc(var(--extra-foto) / -2);
+        margin-right: calc(var(--extra-foto) / -2);
+        grid-template-columns: var(--foto-abierta) minmax(0, 1fr);
+        z-index: 20;
+    }
+
+    /*
+       El texto no recibe ninguna transformación ni un cambio
+       de columna: el ancho adicional pertenece a la fotografía.
+    */
+    .elenco-grid > .actor .actor-info {
+        min-width: 0;
+        width: auto;
+    }
+}
+
+/* En anchos donde 2 x 480px + gap ya no entra cómodamente,
+   volvemos al comportamiento responsive existente. */
+@media (min-width: 981px) and (max-width: 1120px) {
+    .temporadas-grid,
+    .episodios-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* ==========================================================
+   ELENCO — retratos completos + hover sutil
+   ========================================================== */
+
+@media (min-width: 981px) {
+
+    /*
+     * Anulamos definitivamente la mecánica de "revelado".
+     * La tarjeta mantiene siempre su tamaño y distribución.
+     */
+    .elenco-grid > .actor,
+    .elenco-grid > .actor:hover,
+    .elenco-grid > .actor:focus-within,
+    .elenco-grid > .actor:nth-of-type(odd):hover,
+    .elenco-grid > .actor:nth-of-type(even):hover,
+    .elenco-grid > .actor:last-child:nth-of-type(odd):hover,
+    .elenco-grid > .actor:nth-of-type(odd):focus-within,
+    .elenco-grid > .actor:nth-of-type(even):focus-within,
+    .elenco-grid > .actor:last-child:nth-of-type(odd):focus-within {
+        width: 100%;
+        max-width: none;
+        margin-left: 0;
+        margin-right: 0;
+        transform: none !important;
+        grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
+    }
+
+    /*
+     * La última tarjeta conserva el centrado especial que ya
+     * tenía el grid, sin participar de ninguna expansión.
+     */
+    .elenco-grid > .actor:last-child:nth-child(odd) {
+        width: calc((100% - 28px) / 2);
+    }
+
+    /*
+     * El contenedor deja un pequeño marco alrededor de la foto.
+     * La imagen completa queda visible desde el estado normal.
+     */
+    .elenco-grid > .actor .actor-imagen {
+        position: relative;
+        width: 100%;
+        min-width: 0;
+        overflow: hidden;
+        padding: clamp(5px, .45vw, 9px);
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .elenco-grid > .actor .actor-imagen > .imagen-elenco {
+        position: relative !important;
+        inset: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+
+        display: block;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+
+        object-fit: contain !important;
+        object-position: center center;
+        transform: scale(.965) !important;
+        transform-origin: center center;
+        transition:
+            transform .24s ease-out,
+            filter .24s ease-out;
+    }
+
+    /*
+     * Feedback mínimo de hover: sólo un pequeño acercamiento.
+     * No cambia el layout, no recorta ni deforma la fotografía.
+     */
+    .elenco-grid > .actor:hover .actor-imagen > .imagen-elenco,
+    .elenco-grid > .actor:focus-within .actor-imagen > .imagen-elenco {
+        transform: scale(1) !important;
+    }
+}
+
+/* El mismo feedback funciona en tablet sin alterar el layout. */
+@media (max-width: 980px) {
+    .elenco-grid > .actor .actor-imagen > .imagen-elenco {
+        transform: scale(.97) !important;
+        transition: transform .24s ease-out;
+    }
+
+    .elenco-grid > .actor:hover .actor-imagen > .imagen-elenco,
+    .elenco-grid > .actor:focus-within .actor-imagen > .imagen-elenco {
+        transform: scale(1) !important;
+    }
+}
+
+/* ==========================================================
+   ELENCO — estado definitivo: imagen llena, layout inmóvil
+   ========================================================== */
+
+/*
+ * Este bloque está al final del CSS a propósito:
+ * neutraliza las pruebas anteriores de expansión/revelado.
+ */
+.elenco-grid > .actor,
+.elenco-grid > .actor:hover,
+.elenco-grid > .actor:focus,
+.elenco-grid > .actor:focus-within,
+.elenco-grid > .actor:nth-of-type(odd):hover,
+.elenco-grid > .actor:nth-of-type(even):hover,
+.elenco-grid > .actor:nth-of-type(odd):focus-within,
+.elenco-grid > .actor:nth-of-type(even):focus-within {
+    transform: none !important;
+    transition: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: none;
+    box-shadow: none;
+}
+
+/* Las tarjetas normales ocupan exactamente su celda del grid. */
+.elenco-grid > .actor:not(:last-child) {
+    width: 100% !important;
+}
+
+/* Se conserva únicamente el centrado estructural de la última tarjeta. */
+@media (min-width: 981px) {
+    .elenco-grid > .actor:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: calc((100% - 28px) / 2) !important;
+        margin-inline: auto !important;
+    }
+}
+
+/* Ningún hijo cambia de escala o posición al hacer hover. */
+.elenco-grid > .actor > *,
+.elenco-grid > .actor:hover > *,
+.elenco-grid > .actor:focus-within > *,
+.elenco-grid > .actor .actor-imagen,
+.elenco-grid > .actor:hover .actor-imagen,
+.elenco-grid > .actor:focus-within .actor-imagen {
+    transform: none !important;
+    transition: none !important;
+}
+
+/*
+ * La imagen ocupa TODO el contenedor de retrato desde el inicio.
+ * Sin padding, sin scale inicial y sin zoom al hover.
+ */
+.elenco-grid > .actor .actor-imagen {
+    position: relative;
+    width: 100% !important;
+    height: 100%;
+    min-width: 0;
+    padding: 0 !important;
+    margin: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.elenco-grid > .actor .actor-imagen > .imagen-elenco,
+.elenco-grid > .actor:hover .actor-imagen > .imagen-elenco,
+.elenco-grid > .actor:focus-within .actor-imagen > .imagen-elenco {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    min-height: 100% !important;
+    max-height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    object-fit: cover !important;
+    object-position: center top;
+    transform: none !important;
+    transition: none !important;
+    filter: none !important;
+}
+
+/* ==========================================================
+   ELENCO — OVERRIDE FINAL
+   Tarjeta fija + retrato al 100%, sin animación de geometría
+   ========================================================== */
+
+/*
+ * Importante: además de transform/width, las pruebas anteriores
+ * modificaban grid-template-columns en :hover. Eso era lo que
+ * todavía hacía crecer la zona del retrato/contenedor.
+ */
+.elenco-grid > .actor,
+.elenco-grid > .actor:hover,
+.elenco-grid > .actor:focus,
+.elenco-grid > .actor:focus-within,
+.elenco-grid > .actor:nth-of-type(odd):hover,
+.elenco-grid > .actor:nth-of-type(even):hover,
+.elenco-grid > .actor:nth-of-type(odd):focus-within,
+.elenco-grid > .actor:nth-of-type(even):focus-within,
+.elenco-grid > .actor:last-child:nth-of-type(odd):hover,
+.elenco-grid > .actor:last-child:nth-of-type(odd):focus-within {
+    --foto-cerrada: 42% !important;
+    --foto-abierta: 42% !important;
+    --extra-foto: 0px !important;
+
+    grid-template-columns: minmax(0, 42%) minmax(0, 1fr) !important;
+
+    transform: none !important;
+    transform-origin: center !important;
+    transition: none !important;
+
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+
+    box-shadow: 0 0 18px rgba(0, 245, 255, 0.12) !important;
+    overflow: hidden !important;
+}
+
+/* Tarjetas de las dos columnas: tamaño completamente estable. */
+.elenco-grid > .actor:not(:last-child),
+.elenco-grid > .actor:not(:last-child):hover,
+.elenco-grid > .actor:not(:last-child):focus-within {
+    width: 100% !important;
+}
+
+/* La séptima conserva únicamente su centrado original. */
+@media (min-width: 981px) {
+    .elenco-grid > .actor:last-child:nth-child(odd),
+    .elenco-grid > .actor:last-child:nth-child(odd):hover,
+    .elenco-grid > .actor:last-child:nth-child(odd):focus-within {
+        grid-column: 1 / -1 !important;
+        justify-self: center !important;
+        width: calc((100% - 28px) / 2) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+/* El contenedor de retrato tampoco cambia jamás con hover. */
+.elenco-grid > .actor .actor-imagen,
+.elenco-grid > .actor:hover .actor-imagen,
+.elenco-grid > .actor:focus-within .actor-imagen {
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+
+    transform: none !important;
+    transition: none !important;
+}
+
+/*
+ * Fotografía grande desde el primer frame:
+ * llena completamente el contenedor sin scale ni transición.
+ */
+.elenco-grid > .actor .actor-imagen > .imagen-elenco,
+.elenco-grid > .actor:hover .actor-imagen > .imagen-elenco,
+.elenco-grid > .actor:focus-within .actor-imagen > .imagen-elenco {
+    position: absolute !important;
+    inset: 0 !important;
+
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    object-fit: cover !important;
+    object-position: center top !important;
+
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    filter: saturate(0.88) contrast(1.06) !important;
+}
+
+/* El texto queda fijo: ninguna regla heredada puede compensar escalas. */
+.elenco-grid > .actor > .actor-info,
+.elenco-grid > .actor:hover > .actor-info,
+.elenco-grid > .actor:focus-within > .actor-info {
+    width: auto !important;
+    min-width: 0 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+/* ==========================================================
+   MENÚ MOBILE — cada dropdown abre sólo su nivel directo
+   ========================================================== */
+@media (max-width: 768px) {
+    /*
+     * La regla antigua:
+     *   .dropdown.open .dropdown-content
+     * alcanzaba TODOS los submenús descendientes.
+     * Por eso al abrir "Inicio" también aparecían directamente
+     * las temporadas de "Guía de Episodios".
+     */
+
+    #menu_bar .dropdown > .dropdown-content {
+        display: none !important;
+    }
+
+    #menu_bar .dropdown.open > .dropdown-content {
+        display: block !important;
+    }
+
+    /*
+     * El submenu de temporadas permanece cerrado hasta tocar
+     * específicamente "Guía de Episodios".
+     */
+    #menu_bar .dropdown--episodes:not(.open) > .dropdown-content--episodes {
+        display: none !important;
+    }
+
+    #menu_bar .dropdown--episodes.open > .dropdown-content--episodes {
+        display: block !important;
+    }
+}
+
+/* ==========================================================
+   ELENCO MOBILE — retrato arriba + información debajo
+   ========================================================== */
+@media (max-width: 768px) {
+
+    /*
+     * En mobile cada actor pasa de dos columnas a una sola.
+     * Esto evita que fotografía y texto compitan por el ancho.
+     */
+    .elenco-grid > .actor,
+    .elenco-grid > .actor:hover,
+    .elenco-grid > .actor:focus-within {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-inline: 0 !important;
+        transform: none !important;
+        overflow: hidden !important;
+    }
+
+    /* Fotografía: primera fila y ancho completo de la tarjeta. */
+    .elenco-grid > .actor .actor-imagen,
+    .elenco-grid > .actor:hover .actor-imagen,
+    .elenco-grid > .actor:focus-within .actor-imagen {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        aspect-ratio: 16 / 10;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+    }
+
+    /*
+     * Llena el área horizontal sin deformarse.
+     * El formato panorámico reduce bastante la altura que
+     * ocuparía un retrato vertical a ancho completo.
+     */
+    .elenco-grid > .actor .actor-imagen > .imagen-elenco,
+    .elenco-grid > .actor:hover .actor-imagen > .imagen-elenco,
+    .elenco-grid > .actor:focus-within .actor-imagen > .imagen-elenco {
+        position: absolute !important;
+        inset: 0 !important;
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        min-height: 0 !important;
+        max-height: 100% !important;
+        object-fit: cover !important;
+        object-position: center top !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    /* Información: segunda fila, debajo de la fotografía. */
+    .elenco-grid > .actor .actor-info,
+    .elenco-grid > .actor:hover .actor-info,
+    .elenco-grid > .actor:focus-within .actor-info {
+        grid-column: 1 !important;
+        grid-row: 2 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        transform: none !important;
+    }
+}
+
+/* ==========================================================
+   ELENCO MOBILE — altura natural de los retratos
+   ========================================================== */
+@media (max-width: 768px) {
+
+    /*
+     * Quitamos el viewport panorámico 16:10.
+     * El contenedor toma ahora la altura real de la fotografía.
+     */
+    .elenco-grid > .actor .actor-imagen,
+    .elenco-grid > .actor:hover .actor-imagen,
+    .elenco-grid > .actor:focus-within .actor-imagen {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        aspect-ratio: auto !important;
+        overflow: visible !important;
+    }
+
+    /*
+     * La imagen vuelve al flujo normal:
+     * ancho 100% + alto automático conserva su relación de aspecto
+     * y permite ver el retrato completo.
+     */
+    .elenco-grid > .actor .actor-imagen > .imagen-elenco,
+    .elenco-grid > .actor:hover .actor-imagen > .imagen-elenco,
+    .elenco-grid > .actor:focus-within .actor-imagen > .imagen-elenco {
+        position: relative !important;
+        inset: auto !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        min-height: 0 !important;
+        max-height: none !important;
+
+        object-fit: contain !important;
+        object-position: center center !important;
+
+        margin: 0 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
