@@ -2038,61 +2038,6 @@ article p,
 }
 
 /* ==========================================================
-   ELENCO — masonry compacto en tres columnas
-   Cada ficha conserva solamente la altura que necesita.
-   ========================================================== */
-
-/* El contenedor de las fichas del elenco usa columnas
-   independientes: no existen filas de altura compartida. */
-body:has(a[href^="elenco-"][class~="button"]) main .grid {
-  display: block !important;
-  column-count: 3;
-  column-gap: 18px;
-}
-
-/* Cada card es un tile indivisible y compacto. */
-body:has(a[href^="elenco-"][class~="button"]) main .grid > .cards {
-  display: flex !important;
-  flex-direction: column;
-  height: auto !important;
-  break-inside: avoid;
-  -webkit-column-break-inside: avoid;
-  page-break-inside: avoid;
-  margin: 0 0 18px;
-  padding-bottom: 18px;
-}
-
-/* En elenco ACTOR FILE pertenece al flujo natural de su ficha:
-   no se empuja artificialmente hacia el fondo. */
-body:has(a[href^="elenco-"][class~="button"]) main .grid > .cards > .button {
-  margin-top: 14px !important;
-  align-self: flex-start;
-}
-
-/* Separación interna regular entre actor y personaje. */
-body:has(a[href^="elenco-"][class~="button"]) main .grid > .cards h2 {
-  margin-bottom: 7px;
-}
-body:has(a[href^="elenco-"][class~="button"]) main .grid > .cards p {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-/* Escalado preliminar y seguro; la auditoría responsive posterior
-   podrá afinar estos puntos junto con el resto del sitio. */
-@media (max-width: 1024px) {
-  body:has(a[href^="elenco-"][class~="button"]) main .grid {
-    column-count: 2;
-  }
-}
-@media (max-width: 640px) {
-  body:has(a[href^="elenco-"][class~="button"]) main .grid {
-    column-count: 1;
-  }
-}
-
-
-/* ==========================================================
    ELENCO — MASONRY FIX
    Selector explícito y altura verdaderamente natural.
    ========================================================== */
@@ -2135,4 +2080,264 @@ body:has(a[href^="elenco-"][class~="button"]) main .grid > .cards p {
 }
 @media (max-width: 640px) {
   .cast-masonry { column-count: 1; }
+}
+
+/* ==========================================================
+   AUDITORÍA RESPONSIVE V1
+   Rangos de trabajo:
+   <=640 / 641–1024 / 1025–1599 / 1600–2559 / >=2560
+   ========================================================== */
+
+/* Base segura para medios y contenido flexible */
+img, video, iframe {
+  max-width: 100%;
+}
+.panel, .cards, .profile, .episode, .review, .contact-grid > * {
+  min-width: 0;
+}
+pre, code, .boot-log {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.button {
+  max-width: 100%;
+}
+
+/* MOBILE — hasta 640 px */
+@media (max-width: 640px) {
+  .shell {
+    width: calc(100% - 12px);
+    margin-inline: auto;
+  }
+  header {
+    padding-inline: 12px;
+  }
+  .page {
+    padding: 14px 8px 64px;
+  }
+  .hero {
+    min-height: 320px;
+  }
+  .hero-box {
+    width: calc(100% - 16px);
+    margin: 8px;
+    padding: 18px 14px;
+  }
+  .hero h1 {
+    font-size: clamp(1.8rem, 11vw, 3rem);
+    overflow-wrap: anywhere;
+  }
+  .grid,
+  .grid.two,
+  .grid.four,
+  .person-grid,
+  .gallery,
+  .contact-grid {
+    grid-template-columns: minmax(0,1fr) !important;
+  }
+  .profile {
+    grid-template-columns: minmax(0,1fr) !important;
+    gap: 16px;
+  }
+  .episode {
+    grid-template-columns: 46px minmax(0,1fr);
+    gap: 10px;
+  }
+  .epno {
+    font-size: 1.25rem;
+  }
+  .cast-masonry {
+    column-count: 1 !important;
+  }
+  .contact-hero-image {
+    min-height: 320px;
+  }
+  .lightbox-frame {
+    width: 100%;
+    max-width: 100%;
+  }
+  .lightbox-caption {
+    max-width: none;
+  }
+  #backTop {
+    right: 10px;
+    bottom: 14px;
+    width: 44px;
+    height: 44px;
+    font-size: 1.75rem;
+  }
+  .site-footer {
+    padding-inline: 12px;
+  }
+}
+
+/* TABLET / MOBILE HORIZONTAL — 641 a 1024 px */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .shell {
+    width: 96%;
+  }
+  .page {
+    padding-inline: 14px;
+  }
+  .grid,
+  .person-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+  .grid.four,
+  .gallery {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+  .grid.two,
+  .contact-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+  .profile {
+    grid-template-columns: minmax(210px,32%) minmax(0,1fr);
+    gap: 20px;
+  }
+  .cast-masonry {
+    column-count: 2 !important;
+  }
+  .hero-box {
+    width: min(90%,850px);
+  }
+}
+
+/* PC COMÚN — incluye 1366x768 */
+@media (min-width: 1025px) and (max-width: 1599px) {
+  .shell {
+    width: min(1180px,94%);
+  }
+  .grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+  .grid.four,
+  .gallery {
+    grid-template-columns: repeat(4,minmax(0,1fr));
+  }
+  .grid.two,
+  .contact-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+  .person-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+  .cast-masonry {
+    column-count: 3 !important;
+  }
+}
+
+/* ESCRITORIO GRANDE — 1920 y hasta antes de 2K */
+@media (min-width: 1600px) and (max-width: 2559px) {
+  .shell {
+    width: min(1360px,90%);
+  }
+  .page {
+    padding-inline: 24px;
+  }
+  .grid {
+    gap: 18px;
+  }
+  .grid.four,
+  .gallery {
+    gap: 14px;
+  }
+  .hero {
+    min-height: 480px;
+  }
+  .hero-box {
+    max-width: 940px;
+    padding: 40px;
+  }
+  .profile {
+    grid-template-columns: 320px minmax(0,1fr);
+    gap: 30px;
+  }
+  .cast-masonry {
+    column-count: 3 !important;
+    column-gap: 22px;
+  }
+  .cast-masonry > article.panel.cards {
+    margin-bottom: 22px !important;
+  }
+}
+
+/* 2K / 4K — el contenido deja de crecer; el margen queda
+   deliberadamente disponible para la futura decoración CRT. */
+@media (min-width: 2560px) {
+  .shell {
+    width: min(1540px,78%);
+  }
+  .page {
+    padding: 30px 30px 96px;
+  }
+  .hero {
+    min-height: 520px;
+  }
+  .hero-box {
+    max-width: 980px;
+    padding: 44px;
+  }
+  .grid {
+    gap: 22px;
+  }
+  .gallery {
+    gap: 16px;
+  }
+  .profile {
+    grid-template-columns: 340px minmax(0,1fr);
+    gap: 34px;
+  }
+  .cast-masonry {
+    column-count: 3 !important;
+    column-gap: 26px;
+  }
+  .cast-masonry > article.panel.cards {
+    margin-bottom: 26px !important;
+  }
+  .site-footer {
+    padding-block: 30px;
+  }
+}
+
+/* ==========================================================
+   ELENCO — RESTAURACIÓN MASONRY POST-AUDITORÍA
+   Debe prevalecer sobre las reglas generales de .grid.
+   ========================================================== */
+main .cast-masonry {
+  display: block !important;
+  grid-template-columns: none !important;
+  column-count: 3 !important;
+  column-gap: 18px !important;
+}
+main .cast-masonry > article.panel.cards {
+  display: inline-flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 0 18px !important;
+  padding-bottom: 18px;
+  vertical-align: top;
+  break-inside: avoid !important;
+  -webkit-column-break-inside: avoid !important;
+}
+main .cast-masonry > article.panel.cards > img.cast-photo {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  flex: 0 0 auto !important;
+}
+main .cast-masonry > article.panel.cards > .button {
+  margin-top: 14px !important;
+  align-self: flex-start !important;
+}
+@media (min-width: 641px) and (max-width: 1024px) {
+  main .cast-masonry { column-count: 2 !important; }
+}
+@media (max-width: 640px) {
+  main .cast-masonry { column-count: 1 !important; }
 }
