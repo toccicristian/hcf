@@ -90,6 +90,17 @@
     if (e.key === 'Escape') closePhosphorMenu();
   });
 
+  // NAV dropdowns: only one menu can remain open at a time.
+  const navDetails = $$('#mainNav details');
+  navDetails.forEach(details => {
+    details.addEventListener('toggle', () => {
+      if (!details.open) return;
+      navDetails.forEach(other => {
+        if (other !== details) other.open = false;
+      });
+    });
+  });
+
   // Mobile terminal menu
   const nav = $('#mainNav');
   const hamb = $('#hamb');

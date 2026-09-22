@@ -1702,3 +1702,226 @@ body.lightbox-open
     border-bottom: 0;
     background-image: none;
 }
+
+/* ==========================================================
+   PERSONAJES — transición NES -> fotografía
+   ========================================================== */
+
+/*
+ * La fotografía permanece en el flujo normal y define la altura
+ * natural del retrato. Así se ve completa y toca los cuatro bordes
+ * del marco sin letterboxing ni deformación.
+ */
+.pixel-reveal {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  border: 1px solid var(--dim);
+  box-sizing: border-box;
+}
+
+.pixel-reveal img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  border: 0;
+  margin: 0;
+}
+
+.pixel-reveal__foto {
+  position: relative;
+  z-index: 1;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(1) sepia(.5) hue-rotate(55deg) contrast(1.15) brightness(.78);
+}
+
+.pixel-reveal__nes {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  opacity: 1;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  transition: opacity .65s steps(8,end), transform .65s steps(8,end);
+}
+
+.pixel-reveal:hover .pixel-reveal__nes,
+.pixel-reveal:focus .pixel-reveal__nes,
+.pixel-reveal:focus-visible .pixel-reveal__nes {
+  opacity: 0;
+  transform: scale(1.04);
+}
+
+/* Evita que las reglas genéricas .cards img / .portrait img fuercen 16:10 o 3:4. */
+.cards .pixel-reveal img,
+.portrait .pixel-reveal img {
+  aspect-ratio: auto;
+}
+
+.portrait .pixel-reveal {
+  width: 100%;
+}
+
+/* ==========================================================
+   ELENCO — fotografías reales
+   ========================================================== */
+
+/*
+ * Las fotos del directorio images/actores se muestran completas.
+ * Su propia relación de aspecto determina la altura: sin huecos
+ * entre fotografía y marco y sin recorte por un aspect-ratio fijo.
+ */
+.cards img.cast-photo,
+.portrait img.cast-photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+  margin: 0;
+}
+
+/* ==========================================================
+   FIX FINAL — RETRATOS DE PERSONAJES
+   NES -> FOTO, proporción 256x240 y sin colapso de altura
+   ========================================================== */
+.cards .pixel-reveal,
+.portrait .pixel-reveal {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16 / 15 !important;
+  overflow: hidden !important;
+  background: #000 !important;
+  box-sizing: border-box !important;
+}
+
+.cards .pixel-reveal > img,
+.portrait .pixel-reveal > img {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  border: 0 !important;
+}
+
+.cards .pixel-reveal > .pixel-reveal__foto,
+.portrait .pixel-reveal > .pixel-reveal__foto {
+  z-index: 1 !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.cards .pixel-reveal > .pixel-reveal__nes,
+.portrait .pixel-reveal > .pixel-reveal__nes {
+  z-index: 2 !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  opacity: 1 !important;
+  transform: none;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  transition: opacity .65s steps(8,end), transform .65s steps(8,end) !important;
+}
+
+.cards .pixel-reveal:hover > .pixel-reveal__nes,
+.cards .pixel-reveal:focus > .pixel-reveal__nes,
+.cards .pixel-reveal:focus-visible > .pixel-reveal__nes,
+.portrait .pixel-reveal:hover > .pixel-reveal__nes,
+.portrait .pixel-reveal:focus > .pixel-reveal__nes,
+.portrait .pixel-reveal:focus-visible > .pixel-reveal__nes {
+  opacity: 0 !important;
+  transform: scale(1.04) !important;
+}
+
+/* ==========================================================
+   GALERÍA
+   Miniaturas monocromas; imagen FULL a color.
+   Scanlines sutiles únicamente sobre el visor.
+   ========================================================== */
+.gallery img {
+  filter: grayscale(1) contrast(1.08) !important;
+}
+
+.lightbox img,
+.lightbox-content img,
+#lightboxImage {
+  filter: none !important;
+}
+
+/* Scanlines del visor: overlay visual, nunca modifica el color. */
+.lightbox-content,
+.lightbox-inner,
+.lightbox-stage {
+  position: relative;
+}
+
+.lightbox-content::after,
+.lightbox-inner::after,
+.lightbox-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 0,
+    rgba(0,0,0,0) 3px,
+    rgba(0,0,0,.10) 4px
+  );
+  mix-blend-mode: multiply;
+}
+
+
+/* ==========================================================
+   RETRATOS — tratamiento de color
+   ========================================================== */
+
+/* Personajes: tanto el retrato NES como la fotografía real
+   conservan sus colores originales durante toda la transición. */
+.cards .pixel-reveal > .pixel-reveal__nes,
+.portrait .pixel-reveal > .pixel-reveal__nes,
+.cards .pixel-reveal > .pixel-reveal__foto,
+.portrait .pixel-reveal > .pixel-reveal__foto {
+  filter: none !important;
+}
+
+/* Elenco: monocromo en reposo y recuperación suave del color. */
+.cards img.cast-photo,
+.portrait img.cast-photo {
+  filter: grayscale(1) contrast(1.06) !important;
+  transition: filter .6s ease !important;
+}
+
+.cards:hover img.cast-photo,
+.cards:focus-within img.cast-photo,
+.portrait:hover img.cast-photo,
+.portrait:focus-within img.cast-photo,
+img.cast-photo:hover,
+img.cast-photo:focus {
+  filter: grayscale(0) contrast(1) !important;
+}
+
+
+/* BIOGRAFÍAS — fichas individuales del elenco */
+.actor-bio {
+  line-height: 1.55;
+  margin-top: 1rem;
+}
+.actor-bio strong {
+  color: var(--cyan);
+  font-weight: 700;
+}
