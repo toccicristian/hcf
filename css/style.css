@@ -2341,3 +2341,675 @@ main .cast-masonry > article.panel.cards > .button {
 @media (max-width: 640px) {
   main .cast-masonry { column-count: 1 !important; }
 }
+
+/* ==========================================================
+   DECORACIÓN CRT AMBIENTAL
+   Capa puramente visual: no altera navegación ni contenido.
+   ========================================================== */
+
+/* Los márgenes exteriores de .shell funcionan como "señal residual".
+   Se mantienen muy discretos en PC común y ganan presencia sólo
+   cuando la pantalla realmente ofrece espacio lateral. */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  width: max(0px, calc((100vw - min(1180px,94vw)) / 2));
+  pointer-events: none;
+  opacity: 0;
+  background:
+    repeating-linear-gradient(0deg,
+      transparent 0 5px,
+      rgba(var(--phosphor-rgb),.045) 6px),
+    linear-gradient(90deg,
+      transparent,
+      rgba(var(--phosphor-rgb),.035) 55%,
+      transparent);
+}
+body::before { left: 0; }
+body::after  { right: 0; transform: scaleX(-1); }
+
+/* Fantasmas fotográficos reutilizan material local de la galería.
+   Los degradados hacen que la imagen desaparezca dentro del negro. */
+.crt-ghost {
+  position: relative;
+  overflow: hidden;
+  min-height: 220px;
+  border: 1px solid rgba(var(--phosphor-rgb),.18);
+  background-color: #020502;
+  isolation: isolate;
+}
+.crt-ghost::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-position: center;
+  background-size: cover;
+  filter: grayscale(1) contrast(1.25) brightness(.42);
+  opacity: .42;
+}
+.crt-ghost::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    repeating-linear-gradient(0deg,
+      transparent 0 3px,
+      rgba(0,0,0,.32) 4px,
+      rgba(var(--phosphor-rgb),.055) 5px),
+    linear-gradient(90deg,
+      rgba(2,5,2,.96) 0%,
+      rgba(2,5,2,.35) 42%,
+      rgba(2,5,2,.86) 100%),
+    linear-gradient(0deg,
+      #020502 0%,
+      transparent 28%,
+      transparent 68%,
+      #020502 100%);
+}
+.crt-ghost__label {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  z-index: 2;
+  color: rgba(var(--phosphor-rgb),.58);
+  font-size: .66rem;
+  letter-spacing: .08em;
+  text-shadow: 0 0 8px rgba(var(--phosphor-rgb),.35);
+}
+
+/* Inicio: el diagnóstico y el frame residual forman una pareja,
+   pero el contenido sigue siendo el protagonista. */
+.home-diagnostic-zone {
+  display: grid;
+  grid-template-columns: minmax(0,1.35fr) minmax(260px,.65fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+.home-diagnostic-zone > .panel {
+  margin: 0;
+}
+.crt-ghost--home::before {
+  background-image: url('../images/galeria/miniaturas/imagenes-gordons-workshop-poster-640-72.jpg');
+  background-position: 62% center;
+}
+
+/* Elenco: ocupa deliberadamente parte del aire inferior sin intentar
+   falsear el masonry ni convertir el decorado en una nueva card. */
+.crt-ghost--cast {
+  width: min(46%,520px);
+  min-height: 245px;
+  margin: 6px 0 0 auto;
+}
+.crt-ghost--cast::before {
+  background-image: url('../images/galeria/miniaturas/imagenes-t03-e10-next-640-72.jpg');
+  background-position: center 42%;
+}
+
+/* Mobile: la decoración no compite con el contenido. */
+@media (max-width: 640px) {
+  body::before,
+  body::after {
+    display: none;
+  }
+  .home-diagnostic-zone {
+    grid-template-columns: 1fr;
+  }
+  .crt-ghost--home {
+    display: none;
+  }
+  .crt-ghost--cast {
+    display: none;
+  }
+}
+
+/* Tablet: sólo queda una versión muy tenue del decorado interno. */
+@media (min-width: 641px) and (max-width: 1024px) {
+  body::before,
+  body::after {
+    display: none;
+  }
+  .home-diagnostic-zone {
+    grid-template-columns: minmax(0,1.45fr) minmax(220px,.55fr);
+  }
+  .crt-ghost--cast {
+    width: 48%;
+    min-height: 200px;
+    opacity: .72;
+  }
+}
+
+/* 1366: señal lateral apenas insinuada. */
+@media (min-width: 1025px) and (max-width: 1599px) {
+  body::before,
+  body::after {
+    opacity: .34;
+  }
+}
+
+/* 1920: ya existe margen suficiente para leerlo como parte del monitor. */
+@media (min-width: 1600px) and (max-width: 2559px) {
+  body::before,
+  body::after {
+    width: calc((100vw - min(1360px,90vw)) / 2);
+    opacity: .68;
+    background:
+      repeating-linear-gradient(0deg,
+        transparent 0 5px,
+        rgba(var(--phosphor-rgb),.055) 6px),
+      radial-gradient(ellipse at 100% 36%,
+        rgba(var(--phosphor-rgb),.075),
+        transparent 68%);
+  }
+  .crt-ghost--home { min-height: 260px; }
+  .crt-ghost--cast { min-height: 280px; }
+}
+
+/* 2K/4K: el margen reservado por la auditoría responsive se convierte
+   en superficie decorativa, sin ensanchar el contenido editorial. */
+@media (min-width: 2560px) {
+  body::before,
+  body::after {
+    width: calc((100vw - min(1540px,78vw)) / 2);
+    opacity: .88;
+    background:
+      repeating-linear-gradient(0deg,
+        transparent 0 5px,
+        rgba(var(--phosphor-rgb),.065) 6px),
+      repeating-linear-gradient(90deg,
+        transparent 0 47px,
+        rgba(var(--phosphor-rgb),.035) 48px),
+      radial-gradient(ellipse at 100% 34%,
+        rgba(var(--phosphor-rgb),.095),
+        transparent 66%);
+  }
+  .crt-ghost--home { min-height: 290px; }
+  .crt-ghost--cast {
+    width: min(48%,600px);
+    min-height: 310px;
+  }
+}
+
+/* ==========================================================
+   DECORACIÓN CRT — SEGUNDA PASADA
+   Más legible, mayor ocupación y laterales con instrumentación.
+   ========================================================== */
+
+/* Inicio: BOOT DIAGNOSTIC deja de dominar horizontalmente.
+   El residual frame pasa a ser casi media composición. */
+@media (min-width: 1025px) {
+  .home-diagnostic-zone {
+    grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr);
+    gap: 18px;
+  }
+  .crt-ghost--home {
+    min-height: 300px;
+  }
+  .crt-ghost--home::before {
+    opacity: .72;
+    filter: grayscale(1) contrast(1.38) brightness(.54);
+  }
+}
+
+/* Los frames siguen degradados, pero ahora la imagen puede reconocerse
+   antes de disolverse en la señal. */
+.crt-ghost {
+  box-shadow:
+    inset 0 0 38px rgba(0,0,0,.72),
+    0 0 18px rgba(var(--phosphor-rgb),.06);
+}
+.crt-ghost::before {
+  opacity: .56;
+  filter: grayscale(1) contrast(1.32) brightness(.52);
+}
+.crt-ghost::after {
+  background:
+    repeating-linear-gradient(0deg,
+      transparent 0 3px,
+      rgba(0,0,0,.25) 4px,
+      rgba(var(--phosphor-rgb),.07) 5px),
+    linear-gradient(90deg,
+      rgba(2,5,2,.78) 0%,
+      rgba(2,5,2,.16) 44%,
+      rgba(2,5,2,.72) 100%),
+    linear-gradient(0deg,
+      #020502 0%,
+      transparent 22%,
+      transparent 74%,
+      #020502 100%);
+}
+.crt-ghost__label {
+  padding: 4px 7px;
+  border-left: 2px solid rgba(var(--phosphor-rgb),.42);
+  background: rgba(0,0,0,.58);
+  color: rgba(var(--phosphor-rgb),.76);
+}
+
+/* Elenco: el frame residual ocupa el hueco visual inferior derecho.
+   No forma parte de .cast-masonry, por lo que no cambia las cards. */
+@media (min-width: 1025px) {
+  .cast-page {
+    position: relative;
+  }
+  .cast-page .crt-ghost--cast {
+    width: calc((100% - 36px) / 3);
+    min-height: clamp(320px,28vw,470px);
+    margin: 18px 0 0 auto;
+  }
+  .cast-page .crt-ghost--cast::before {
+    opacity: .7;
+    filter: grayscale(1) contrast(1.4) brightness(.52);
+  }
+}
+
+/* Instrumentación exterior del monitor.
+   Se apoya en los pseudo-elementos de .shell y vive exclusivamente
+   fuera del área editorial. */
+@media (min-width: 1025px) {
+  .shell {
+    position: relative;
+    isolation: isolate;
+  }
+  .shell::before,
+  .shell::after {
+    position: absolute;
+    top: 150px;
+    bottom: 90px;
+    width: clamp(24px, calc((100vw - 100%) / 2 - 12px), 150px);
+    pointer-events: none;
+    z-index: -1;
+    color: rgba(var(--phosphor-rgb),.28);
+    border-top: 1px solid rgba(var(--phosphor-rgb),.12);
+    border-bottom: 1px solid rgba(var(--phosphor-rgb),.12);
+    background:
+      linear-gradient(rgba(var(--phosphor-rgb),.16),rgba(var(--phosphor-rgb),.16))
+        50% 0 / 1px 100% no-repeat,
+      repeating-linear-gradient(0deg,
+        transparent 0 31px,
+        rgba(var(--phosphor-rgb),.09) 32px,
+        transparent 33px 63px),
+      repeating-linear-gradient(90deg,
+        transparent 0 8px,
+        rgba(var(--phosphor-rgb),.045) 9px,
+        transparent 10px 18px);
+    opacity: .62;
+  }
+  .shell::before {
+    content: "CH 01  /  V-SYNC 60Hz  /  2400 BAUD  /  RX";
+    right: calc(100% + 10px);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    padding: 12px 7px;
+    font-size: .58rem;
+    letter-spacing: .16em;
+  }
+  .shell::after {
+    content: "MEM 640K  /  PORT 03F8  /  CARRIER  /  TX";
+    left: calc(100% + 10px);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    padding: 12px 7px;
+    font-size: .58rem;
+    letter-spacing: .16em;
+  }
+}
+
+/* A 1366 los rieles son casi marcas de calibración: no se roba
+   ancho útil al contenido. */
+@media (min-width: 1025px) and (max-width: 1599px) {
+  .shell::before,
+  .shell::after {
+    width: max(18px, calc((100vw - 100%) / 2 - 8px));
+    opacity: .38;
+    font-size: .5rem;
+  }
+}
+
+/* 1920: aparecen pequeñas zonas de fósforo residual en los laterales. */
+@media (min-width: 1600px) and (max-width: 2559px) {
+  .shell::before,
+  .shell::after {
+    opacity: .72;
+    background:
+      radial-gradient(ellipse at center,
+        rgba(var(--phosphor-rgb),.08),
+        transparent 64%),
+      linear-gradient(rgba(var(--phosphor-rgb),.18),rgba(var(--phosphor-rgb),.18))
+        50% 0 / 1px 100% no-repeat,
+      repeating-linear-gradient(0deg,
+        transparent 0 31px,
+        rgba(var(--phosphor-rgb),.11) 32px,
+        transparent 33px 63px);
+  }
+}
+
+/* 2K/4K: la instrumentación puede respirar mucho más, sin agrandar shell. */
+@media (min-width: 2560px) {
+  .shell::before,
+  .shell::after {
+    width: clamp(120px, calc((100vw - 100%) / 2 - 24px), 320px);
+    opacity: .88;
+    font-size: .64rem;
+    background:
+      radial-gradient(ellipse at center,
+        rgba(var(--phosphor-rgb),.11),
+        transparent 62%),
+      linear-gradient(rgba(var(--phosphor-rgb),.2),rgba(var(--phosphor-rgb),.2))
+        50% 0 / 1px 100% no-repeat,
+      repeating-linear-gradient(0deg,
+        transparent 0 39px,
+        rgba(var(--phosphor-rgb),.12) 40px,
+        transparent 41px 79px),
+      repeating-linear-gradient(90deg,
+        transparent 0 19px,
+        rgba(var(--phosphor-rgb),.045) 20px,
+        transparent 21px 39px);
+  }
+}
+
+/* Mobile/tablet: sin instrumentación exterior; allí no hay margen real. */
+@media (max-width: 1024px) {
+  .shell::before,
+  .shell::after {
+    content: none !important;
+    display: none !important;
+  }
+}
+
+/* ==========================================================
+   ELENCO — MASONRY POR CARRILES
+   La tercera columna integra el frame residual en su propio hueco.
+   ========================================================== */
+main .cast-masonry {
+  display: grid !important;
+  grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+  gap: 18px !important;
+  column-count: initial !important;
+  align-items: start;
+}
+.cast-masonry .cast-lane {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+main .cast-masonry .cast-lane > article.panel.cards {
+  display: flex !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding-bottom: 18px;
+}
+main .cast-masonry .cast-lane > article.panel.cards > img.cast-photo {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+}
+.cast-page .cast-masonry .crt-ghost--cast {
+  width: 100% !important;
+  min-height: 300px;
+  margin: 0 !important;
+}
+
+/* Tablet: dos carriles visuales. Se usa contents para que las fichas
+   vuelvan a participar de un único grid sin alturas forzadas. */
+@media (min-width: 641px) and (max-width: 1024px) {
+  main .cast-masonry {
+    grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+  }
+  .cast-masonry .cast-lane {
+    display: contents;
+  }
+  .cast-page .cast-masonry .crt-ghost--cast {
+    display: block;
+    min-height: 220px;
+  }
+}
+
+/* Mobile: una sola secuencia; el decorado residual sigue oculto. */
+@media (max-width: 640px) {
+  main .cast-masonry {
+    grid-template-columns: minmax(0,1fr) !important;
+  }
+  .cast-masonry .cast-lane {
+    display: contents;
+  }
+  .cast-page .cast-masonry .crt-ghost--cast {
+    display: none !important;
+  }
+}
+
+/* ==========================================================
+   ELENCO — TELEMETRÍA DEL SEGUNDO CARRIL
+   Ocupa el segundo vacío con información gráfica, no otra foto.
+   ========================================================== */
+.cast-telemetry {
+  position: relative;
+  min-height: 235px;
+  padding: 18px 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid rgba(var(--phosphor-rgb),.22);
+  background:
+    repeating-linear-gradient(0deg,
+      transparent 0 4px,
+      rgba(var(--phosphor-rgb),.035) 5px),
+    radial-gradient(ellipse at 78% 28%,
+      rgba(var(--phosphor-rgb),.09),
+      transparent 58%),
+    #020502;
+  color: rgba(var(--phosphor-rgb),.56);
+  font-size: .72rem;
+  letter-spacing: .08em;
+  box-shadow: inset 0 0 36px rgba(0,0,0,.75);
+}
+.cast-telemetry::after {
+  content: "01001000 01000011 01000110";
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  max-width: 110px;
+  opacity: .23;
+  line-height: 1.6;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+.cast-telemetry__title {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(var(--phosphor-rgb),.22);
+  color: rgba(var(--phosphor-rgb),.82);
+}
+.cast-telemetry__bar {
+  width: 72%;
+  height: 7px;
+  margin-top: 8px;
+  border: 1px solid rgba(var(--phosphor-rgb),.24);
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(var(--phosphor-rgb),.38) 0 12px,
+    transparent 12px 17px
+  );
+}
+.cast-telemetry__status {
+  margin-top: auto;
+  color: var(--amber);
+  opacity: .78;
+}
+
+/* ==========================================================
+   FOOTER — distribución más equilibrada en escritorio
+   ========================================================== */
+.site-footer {
+  justify-content: initial;
+}
+.site-footer .legal {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.site-footer .social {
+  flex: 0 1 34%;
+  min-width: 250px;
+  display: flex;
+  justify-content: center;
+  gap: clamp(18px,1.8vw,34px);
+  margin-inline: auto;
+}
+
+/* En 1920 el bloque social deja de quedar pegado al borde derecho:
+   ocupa una zona propia y centra sus iconos dentro de ella. */
+@media (min-width: 1600px) {
+  .site-footer {
+    display: grid;
+    grid-template-columns: minmax(0,1.55fr) minmax(320px,.75fr);
+    column-gap: clamp(50px,6vw,110px);
+    align-items: center;
+  }
+  .site-footer .social {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    justify-content: space-evenly;
+    gap: clamp(22px,2vw,40px);
+    padding-inline: clamp(18px,2vw,36px);
+  }
+}
+
+/* Tablet mantiene el módulo pero reduce su presencia. */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .cast-telemetry {
+    min-height: 190px;
+    font-size: .66rem;
+  }
+  .site-footer .social {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* Mobile: no añadimos otro bloque decorativo al flujo vertical. */
+@media (max-width: 640px) {
+  .cast-telemetry {
+    display: none !important;
+  }
+  .site-footer .social {
+    min-width: 0;
+    width: 100%;
+    gap: 24px;
+  }
+}
+
+/* ==========================================================
+   AJUSTES V5 — ELENCO + REDES
+   ========================================================== */
+
+/* El bloque técnico del segundo carril gana altura para ocupar mejor
+   el vacío vertical, especialmente en escritorio de 1920. */
+@media (min-width: 1025px) {
+  .cast-telemetry {
+    min-height: clamp(330px, 26vw, 455px);
+    padding: 22px 18px;
+    gap: 13px;
+  }
+}
+@media (min-width: 1600px) {
+  .cast-telemetry {
+    min-height: clamp(410px, 24vw, 500px);
+  }
+}
+
+/* Los iconos pasan a aprovechar realmente el área reservada para Redes. */
+.site-footer .social a {
+  width: clamp(46px,3vw,58px);
+  height: clamp(46px,3vw,58px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.site-footer .social a i {
+  font-size: clamp(1.45rem,1.7vw,2rem);
+  line-height: 1;
+}
+
+@media (min-width: 1600px) {
+  .site-footer .social a {
+    width: clamp(54px,3.2vw,66px);
+    height: clamp(54px,3.2vw,66px);
+  }
+  .site-footer .social a i {
+    font-size: clamp(1.8rem,1.8vw,2.25rem);
+  }
+  .site-footer .social {
+    gap: clamp(26px,2.3vw,46px);
+  }
+}
+
+@media (max-width: 640px) {
+  .site-footer .social a {
+    width: 46px;
+    height: 46px;
+  }
+  .site-footer .social a i {
+    font-size: 1.45rem;
+  }
+}
+
+/* ==========================================================
+   AJUSTE V6 — REDES SIN WRAP
+   ========================================================== */
+.site-footer .social {
+  flex-wrap: nowrap !important;
+}
+.site-footer .social a {
+  flex: 0 0 auto;
+}
+
+@media (min-width: 1600px) {
+  .site-footer .social {
+    flex-wrap: nowrap !important;
+    justify-content: space-evenly;
+  }
+}
+
+/* ==========================================================
+   AJUSTE V7 — FOOTER / REDES A 1920
+   Mantiene una sola fila, pero reserva margen interno real para
+   que Amazon no alcance el borde derecho de .shell.
+   ========================================================== */
+@media (min-width: 1600px) {
+  .site-footer {
+    grid-template-columns: minmax(0,1.65fr) minmax(360px,.70fr);
+    column-gap: clamp(42px,4.5vw,86px);
+    padding-left: clamp(22px,2vw,36px);
+    padding-right: clamp(34px,3vw,58px);
+  }
+
+  .site-footer .social {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding-inline: clamp(8px,1vw,18px);
+    gap: clamp(18px,1.35vw,28px);
+    justify-content: space-between;
+    overflow: visible;
+  }
+
+  .site-footer .social a {
+    width: clamp(50px,2.75vw,58px);
+    height: clamp(50px,2.75vw,58px);
+  }
+
+  .site-footer .social a i {
+    font-size: clamp(1.7rem,1.6vw,2rem);
+  }
+}
