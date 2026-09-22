@@ -1925,3 +1925,214 @@ img.cast-photo:focus {
   color: var(--cyan);
   font-weight: 700;
 }
+
+/* ==========================================================
+   ITERACIÓN FINAL — transición, tipografía, footer y controles
+   ========================================================== */
+
+/* Las páginas sin pantalla de conexión conservan una entrada suave. */
+body {
+  animation: hcfPageIn .34s ease-out both;
+}
+@keyframes hcfPageIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
+}
+
+/* Texto editorial y legales: +20% respecto de su tamaño heredado. */
+article p,
+.site-footer .legal p {
+  font-size: 1.2em;
+}
+
+/* BACK TO TOP: control compacto que no invade el contenido. */
+#backTop {
+  width: 48px;
+  height: 48px;
+  padding: 0 !important;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  line-height: 1;
+  text-align: center;
+}
+
+/* Contacto del desarrollador. */
+.site-footer .developer-contact {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+}
+.site-footer .developer-contact a {
+  color: var(--phosphor);
+  text-decoration: none;
+}
+.site-footer .developer-contact a:hover,
+.site-footer .developer-contact a:focus {
+  color: var(--amber);
+  text-shadow: 0 0 7px currentColor;
+}
+
+/* Identificadores visuales de las fuentes de reseñas.
+   Se mantienen locales, livianos y coherentes con la interfaz BBS. */
+.review-source {
+  width: 70px;
+  min-height: 42px;
+  margin: 0 0 12px;
+  padding: 7px 10px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid currentColor;
+  background: rgba(0,0,0,.42);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  font-size: 1.05rem;
+  letter-spacing: -.03em;
+  line-height: 1;
+  filter: grayscale(1);
+  transition: filter .35s ease, transform .35s ease;
+}
+.review:hover .review-source {
+  filter: grayscale(0);
+  transform: translateY(-2px);
+}
+.review-mark--rt       { color: #f04b32; border-radius: 50%; }
+.review-mark--meta     { color: #f5c518; border-radius: 50%; width: 48px; }
+.review-mark--thr      { color: #e1261c; width: 92px; font-family: Georgia,serif; font-style: italic; }
+.review-mark--newsday  { color: #4f9d48; width: 82px; font-family: Georgia,serif; }
+.review-mark--hitfix   { color: #e59a22; width: 70px; }
+.review-mark--atlantic { color: #c9232d; width: 48px; font-family: Georgia,serif; font-size: 1.7rem; }
+
+/* Mobile: footer y redes centrados. */
+@media (max-width: 768px) {
+  .site-footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .site-footer .legal {
+    width: 100%;
+    margin-inline: auto;
+  }
+  .site-footer .social {
+    width: 100%;
+    min-width: 0;
+    justify-content: center !important;
+    align-items: center;
+    margin-inline: auto;
+  }
+}
+
+/* DIRECTORIO / ELENCO — acciones alineadas al pie */
+.cards {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.cards > .button {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* ==========================================================
+   ELENCO — masonry compacto en tres columnas
+   Cada ficha conserva solamente la altura que necesita.
+   ========================================================== */
+
+/* El contenedor de las fichas del elenco usa columnas
+   independientes: no existen filas de altura compartida. */
+body:has(a[href^="elenco-"][class~="button"]) main .grid {
+  display: block !important;
+  column-count: 3;
+  column-gap: 18px;
+}
+
+/* Cada card es un tile indivisible y compacto. */
+body:has(a[href^="elenco-"][class~="button"]) main .grid > .cards {
+  display: flex !important;
+  flex-direction: column;
+  height: auto !important;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  margin: 0 0 18px;
+  padding-bottom: 18px;
+}
+
+/* En elenco ACTOR FILE pertenece al flujo natural de su ficha:
+   no se empuja artificialmente hacia el fondo. */
+body:has(a[href^="elenco-"][class~="button"]) main .grid > .cards > .button {
+  margin-top: 14px !important;
+  align-self: flex-start;
+}
+
+/* Separación interna regular entre actor y personaje. */
+body:has(a[href^="elenco-"][class~="button"]) main .grid > .cards h2 {
+  margin-bottom: 7px;
+}
+body:has(a[href^="elenco-"][class~="button"]) main .grid > .cards p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Escalado preliminar y seguro; la auditoría responsive posterior
+   podrá afinar estos puntos junto con el resto del sitio. */
+@media (max-width: 1024px) {
+  body:has(a[href^="elenco-"][class~="button"]) main .grid {
+    column-count: 2;
+  }
+}
+@media (max-width: 640px) {
+  body:has(a[href^="elenco-"][class~="button"]) main .grid {
+    column-count: 1;
+  }
+}
+
+
+/* ==========================================================
+   ELENCO — MASONRY FIX
+   Selector explícito y altura verdaderamente natural.
+   ========================================================== */
+.cast-masonry {
+  display: block !important;
+  column-count: 3;
+  column-gap: 18px;
+}
+.cast-masonry > article.panel.cards {
+  display: inline-flex !important;
+  flex-direction: column;
+  width: 100%;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 0 18px !important;
+  vertical-align: top;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+}
+.cast-masonry > article.panel.cards > img.cast-photo {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  flex: 0 0 auto !important;
+}
+.cast-masonry > article.panel.cards > h2 {
+  margin: 14px 0 6px !important;
+}
+.cast-masonry > article.panel.cards > p {
+  margin: 0 !important;
+}
+.cast-masonry > article.panel.cards > .button {
+  margin: 14px 0 0 !important;
+  align-self: flex-start;
+}
+@media (max-width: 1024px) {
+  .cast-masonry { column-count: 2; }
+}
+@media (max-width: 640px) {
+  .cast-masonry { column-count: 1; }
+}

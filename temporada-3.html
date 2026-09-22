@@ -7,17 +7,13 @@
     <script src="js/phosphor-init.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+      <link rel="icon" type="image/x-icon" href="images/favicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
+    <link rel="manifest" href="images/favicons/site.webmanifest">
   </head>
   <body>
-    <div id="nodeBoot" class="node-boot" aria-hidden="false">
-      <div class="node-boot-screen">
-        <div class="node-boot-head">HCF_BBS // NODO PRIVADO 1984</div>
-        <pre id="bootLog" class="boot-log"></pre>
-        <div class="boot-progress"><span id="bootProgress"></span></div>
-        <div class="boot-status" id="bootStatus">INICIANDO ENLACE...</div>
-        <button class="boot-skip" id="bootSkip" type="button">[ OMITIR ]</button>
-      </div>
-    </div>
     <div class="shell">
       <header class="top">
         <div class="brand">
@@ -200,6 +196,12 @@
             Contenido editorial, imágenes y marcas pertenecen a sus respectivos propietarios.
             Enlaces externos se incluyen con fines informativos.
           </p>
+          <p class="developer-contact">
+            DESARROLLO // Cristian Tocci ·
+            <a href="mailto:cristiantocci@gmail.com">cristiantocci@gmail.com</a> ·
+            <a href="tel:1568349909">15-6834-9909</a>
+          </p>
+
         </div>
         <div class="social" aria-label="Redes y enlaces externos">
           <a
@@ -237,7 +239,7 @@
         </div>
       </footer>
     </div>
-    <button id="backTop">↑ BACK TO TOP</button>
+    <button id="backTop" aria-label="Volver arriba" title="Volver arriba">↑</button>
     <script src="js/app.js"></script>
   </body>
 </html>

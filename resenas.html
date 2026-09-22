@@ -7,17 +7,13 @@
     <script src="js/phosphor-init.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+      <link rel="icon" type="image/x-icon" href="images/favicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
+    <link rel="manifest" href="images/favicons/site.webmanifest">
   </head>
   <body>
-    <div id="nodeBoot" class="node-boot" aria-hidden="false">
-      <div class="node-boot-screen">
-        <div class="node-boot-head">HCF_BBS // NODO PRIVADO 1984</div>
-        <pre id="bootLog" class="boot-log"></pre>
-        <div class="boot-progress"><span id="bootProgress"></span></div>
-        <div class="boot-status" id="bootStatus">INICIANDO ENLACE...</div>
-        <button class="boot-skip" id="bootSkip" type="button">[ OMITIR ]</button>
-      </div>
-    </div>
     <div class="shell">
       <header class="top">
         <div class="brand">
@@ -119,6 +115,7 @@
         <div class="grid two">
           <article class="panel review">
             <div class="score">90%</div>
+            <div class="review-source review-mark--rt" aria-hidden="true">RT</div>
             <h2>Rotten Tomatoes</h2>
             <p>
               La serie completa alcanza un promedio crítico de 90% según 121 reseñas; su cuarta
@@ -130,6 +127,7 @@
           </article>
           <article class="panel review">
             <div class="score">75</div>
+            <div class="review-source review-mark--meta" aria-hidden="true">M</div>
             <h2>Metacritic</h2>
             <p>El conjunto de críticas obtiene 75/100, con una recepción generalmente favorable.</p>
             <a
@@ -141,6 +139,7 @@
           </article>
           <article class="panel review">
             <div class="score">80</div>
+            <div class="review-source review-mark--thr" aria-hidden="true">THR</div>
             <h2>The Hollywood Reporter</h2>
             <p>
               Su crítica del piloto destacó la escritura, las actuaciones y el estilo visual,
@@ -155,6 +154,7 @@
           </article>
           <article class="panel review">
             <div class="score">83</div>
+            <div class="review-source review-mark--newsday" aria-hidden="true">N</div>
             <h2>Newsday</h2>
             <p>La crítica de la primera temporada la consideró un comienzo entretenido y atractivo.</p>
             <a
@@ -166,6 +166,7 @@
           </article>
           <article class="panel review">
             <div class="score">91</div>
+            <div class="review-source review-mark--hitfix" aria-hidden="true">HF</div>
             <h2>HitFix</h2>
             <p>
               La crítica destacó que el crecimiento de la segunda temporada recompensa a quienes
@@ -180,6 +181,7 @@
           </article>
           <article class="panel review">
             <div class="score">100</div>
+            <div class="review-source review-mark--atlantic" aria-hidden="true">A</div>
             <h2>The Atlantic</h2>
             <p>
               Una crítica de la cuarta temporada resaltó que la serie convierte su narrativa
@@ -204,6 +206,12 @@
             Contenido editorial, imágenes y marcas pertenecen a sus respectivos propietarios.
             Enlaces externos se incluyen con fines informativos.
           </p>
+          <p class="developer-contact">
+            DESARROLLO // Cristian Tocci ·
+            <a href="mailto:cristiantocci@gmail.com">cristiantocci@gmail.com</a> ·
+            <a href="tel:1568349909">15-6834-9909</a>
+          </p>
+
         </div>
         <div class="social" aria-label="Redes y enlaces externos">
           <a
@@ -241,7 +249,7 @@
         </div>
       </footer>
     </div>
-    <button id="backTop">↑ BACK TO TOP</button>
+    <button id="backTop" aria-label="Volver arriba" title="Volver arriba">↑</button>
     <script src="js/app.js"></script>
   </body>
 </html>
